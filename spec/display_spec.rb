@@ -6,8 +6,8 @@ describe DisplayUtility do
 
   let(:display)  {DisplayUtility.new}
 
-  it "should verify if space is available on the board" do
-    STDOUT.should_receive(:puts).with("Welcome to Tic Tac Toe")
+  it "should prompt welcome message" do
+    STDOUT.should_receive(:puts).with("Welcome to Tic Tac Toe, press enter to begin.")
     display.welcome
   end
 

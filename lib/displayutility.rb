@@ -1,6 +1,22 @@
 class DisplayUtility
 
   def welcome
-    puts "Welcome to Tic Tac Toe"
+    puts "Welcome to Tic Tac Toe, press enter to begin."
+    gets
+  end
+
+  def create_player_prompt(player)
+    puts "Please enter your game piece symbol for #{player}:"
+    gets.chomp
+  end
+
+  def display_board(board)
+    print <<-EOS
+     #{board[0]} | #{board[1]} | #{board[2]}
+    ---|---|---
+     #{board[3]} | #{board[4]} | #{board[5]}
+    ---|---|---
+     #{board[6]} | #{board[7]} | #{board[8]}
+    EOS
   end
 end
