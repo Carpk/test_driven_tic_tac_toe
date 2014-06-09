@@ -17,4 +17,9 @@ describe GamePlay do
   it "should show game board" do
     game.display_board.length.should eq(9)
   end
+
+  it "game token should occupy position" do
+    game.player_move_to(3)
+    game.display_board[3].should eq("x")
+  end
 end

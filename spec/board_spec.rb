@@ -17,4 +17,14 @@ describe TicTacToeBoard do
   it "should return correct version of board" do
     board.present_board.length.should eq(9)
   end
+
+  it "should return correct version of board" do
+    board.present_board.length.should eq(9)
+  end
+
+  it "should assign player to board position" do
+    token, position = "r", 7
+    board.assign_token_to(token, position)
+    board.grid[7].should eq("r")
+  end
 end

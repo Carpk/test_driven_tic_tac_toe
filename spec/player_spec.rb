@@ -6,8 +6,8 @@ describe Player do
 
   let(:player)  {Player.new("x")}
 
-  it "should return correct player game peice" do
-    player.game_peice.should eq("x")
+  it "should return correct player game piece" do
+    player.game_piece.should eq("x")
   end
 
 end

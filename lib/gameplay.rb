@@ -2,8 +2,8 @@ class GamePlay
 
   def initialize(params)
     @board = TicTacToeBoard.new
-    @p1 = Player.new(params[:p1_symbol])
-    @p2 = Player.new(params[:p2_symbol])
+    @players = create_players_hash(params)
+    @current_player = @players[:p1]
   end
 
   def gameover?
@@ -16,6 +16,12 @@ class GamePlay
     false
   end
 
+  def player_move_to(position)
+    token = @current_player[:player].game_piece
+    # @board.assign_token_to(token, position)
+    @current_player = @players[@current_player[:next]]
+  end
+
   def display_board
     @board.present_board
   end
@@ -25,5 +31,11 @@ class GamePlay
      [6,7,8],[0,3,6],
      [1,4,7],[2,5,8],
      [0,4,8],[2,4,6]]
+  end
+
+  def create_players_hash(params)
+    first = Player.new(params[:p1_symbol])
+    second = Player.new(params[:p2_symbol])
+    @players = {p1: {next: :p2, player: first}, p2: {next: :p1, player: second}}
   end
 end

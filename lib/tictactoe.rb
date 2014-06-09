@@ -1,6 +1,6 @@
 class TicTacToe
 
-  def self.start
+  def start
     @view = DisplayUtility.new
     @view.welcome
     params = Hash.new
@@ -10,10 +10,11 @@ class TicTacToe
     play
   end
 
-  def self.play
+  def play
     unless @game.gameover?
       @view.display_board(@game.display_board)
-
+      move = @view.prompt_player_move
+      @game
     end
   end
 
