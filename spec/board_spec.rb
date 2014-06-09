@@ -13,4 +13,8 @@ describe TicTacToeBoard do
   it "should know if there are unassigned positions" do
     board.unassigned_positions?.should eq(true)
   end
+
+  it "should return correct version of board" do
+    board.present_board.length.should eq(9)
+  end
 end

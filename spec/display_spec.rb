@@ -11,4 +11,13 @@ describe DisplayUtility do
     display.welcome
   end
 
+  it "should prompt for player to enter symbol" do
+    STDOUT.should_receive(:puts).with("Please enter your game piece symbol for player:")
+    display.create_player_prompt("player")
+  end
+
+  it "should prompt for player to enter position" do
+    STDOUT.should_receive(:puts).with("Please enter your position on the keypad:")
+    display.prompt_player_move
+  end
 end

@@ -14,4 +14,7 @@ describe GamePlay do
     game.gameover?.should eq(false)
   end
 
+  it "should show game board" do
+    game.display_board.length.should eq(9)
+  end
 end

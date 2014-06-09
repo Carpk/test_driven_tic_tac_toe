@@ -4,11 +4,10 @@ require 'rspec'
 
 describe Player do
 
-  let(:player)  {Player.new}
+  let(:player)  {Player.new("x")}
 
-  # it "should verify if space is available on the board" do
-
-  #   player.assign_token
-  # end
+  it "should return correct player game peice" do
+    player.game_peice.should eq("x")
+  end
 
 end

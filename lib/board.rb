@@ -9,4 +9,9 @@ class TicTacToeBoard
     @grid.include?(nil)
   end
 
+  def present_board
+    pretty_board = @grid.dup
+    pretty_board.each_with_index{|e,i| pretty_board[i] = " " if e == nil}
+  end
+
 end

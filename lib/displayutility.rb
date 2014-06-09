@@ -10,6 +10,11 @@ class DisplayUtility
     gets.chomp
   end
 
+  def prompt_player_move
+    puts "Please enter your position on the keypad:"
+    gets.chomp
+  end
+
   def display_board(board)
     print <<-EOS
      #{board[0]} | #{board[1]} | #{board[2]}
