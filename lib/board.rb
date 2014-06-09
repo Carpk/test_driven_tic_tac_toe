@@ -10,7 +10,7 @@ class TicTacToeBoard
   end
 
   def assign_token_to(token, position)
-
+    @grid[position] = token
   end
 
   def present_board

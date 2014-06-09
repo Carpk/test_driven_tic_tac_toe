@@ -11,10 +11,11 @@ class TicTacToe
   end
 
   def play
-    unless @game.gameover?
-      @view.display_board(@game.display_board)
-      move = @view.prompt_player_move
-      @game
+    until @game.gameover?
+      board = @game.display_board
+      @view.display_board(board)
+      position = @view.prompt_player_move
+      @game.player_move_to(position.to_i)
     end
   end
 

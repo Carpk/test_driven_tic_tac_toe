@@ -4,7 +4,7 @@ require 'rspec'
 
 describe GamePlay do
 
-  let(:game)  {GamePlay.new({p1_symbol:"x",p1_symbol:"o"})}
+  let(:game)  {GamePlay.new({p1_symbol:"x",p2_symbol:"o"})}
 
   it "should know correct amount of differant winning combinations" do
     game.winning_combos_positions.length.should eq(8)

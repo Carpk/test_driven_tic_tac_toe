@@ -2,7 +2,6 @@ class DisplayUtility
 
   def welcome
     puts "Welcome to Tic Tac Toe, press enter to begin."
-    gets
   end
 
   def create_player_prompt(player)

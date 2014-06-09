@@ -18,7 +18,7 @@ class GamePlay
 
   def player_move_to(position)
     token = @current_player[:player].game_piece
-    # @board.assign_token_to(token, position)
+    @board.assign_token_to(token, position)
     @current_player = @players[@current_player[:next]]
   end
 
