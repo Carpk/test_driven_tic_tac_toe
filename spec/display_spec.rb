@@ -20,4 +20,9 @@ describe DisplayUtility do
     STDOUT.should_receive(:puts).with("Please enter your position on the keypad:")
     display.prompt_player_move
   end
+
+  it "should prompt for player to enter position" do
+    STDOUT.should_receive(:puts).with("Game Over!")
+    display.game_over_notice
+  end
 end

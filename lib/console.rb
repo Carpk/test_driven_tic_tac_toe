@@ -1,5 +1,5 @@
 require_relative 'board'
 require_relative 'displayutility'
 require_relative 'player'
-require_relative 'tictactoe'
+require_relative 'tictactoemanager'
 require_relative 'gameplay'

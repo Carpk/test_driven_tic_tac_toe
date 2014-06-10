@@ -14,6 +14,10 @@ class DisplayUtility
     gets.chomp
   end
 
+  def game_over_notice
+    puts "Game Over!"
+  end
+
   def display_board(board)
     print <<-EOS
      #{board[0]} | #{board[1]} | #{board[2]}

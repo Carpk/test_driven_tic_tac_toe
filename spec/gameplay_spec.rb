@@ -6,9 +6,6 @@ describe GamePlay do
 
   let(:game)  {GamePlay.new({p1_symbol:"x",p2_symbol:"o"})}
 
-  it "should know correct amount of differant winning combinations" do
-    game.winning_combos_positions.length.should eq(8)
-  end
 
   it "should know if game is over" do
     game.gameover?.should eq(false)
@@ -23,15 +20,9 @@ describe GamePlay do
     game.display_board[3].should eq("x")
   end
 
-  it "should know if row has won" do
-    game.winning_rows.should eq(false)
+  it "should create a players hash" do
+    params = {p1_symbol:"x",p2_symbol:"o"}
+    game.create_players_hash(params).class.should eq(Hash)
   end
 
-  it "should know if column has won" do
-    game.winning_columns.should eq(false)
-  end
-
-  it "should know if diagonal has won" do
-    game.winning_diagonals.should eq(false)
-  end
 end

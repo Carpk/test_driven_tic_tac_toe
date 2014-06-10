@@ -27,4 +27,24 @@ describe TicTacToeBoard do
     board.assign_token_to(token, position)
     board.grid[7].should eq("r")
   end
+
+  it "should return the square root of board" do
+    board.square_root_of_board.should eq(3)
+  end
+
+  it "should know if row set has won" do
+    board.matching_rows.should eq(false)
+  end
+
+  it "should know if column set has won" do
+    board.matching_columns.should eq(false)
+  end
+
+  it "should know if diagonal set has won" do
+    board.matching_forwardslash.should eq(false)
+  end
+
+  it "should know if diagonal has won" do
+    board.matching_backslash.should eq(false)
+  end
 end
