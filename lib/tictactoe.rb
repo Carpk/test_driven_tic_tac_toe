@@ -3,10 +3,10 @@ class TicTacToe
   def start
     @view = DisplayUtility.new
     @view.welcome
-    params = Hash.new
-    params[:p1_symbol] = @view.create_player_prompt("player1")
-    params[:p2_symbol] = @view.create_player_prompt("player2")
-    @game = GamePlay.new(params)
+    new_players = Hash.new
+    new_players[:p1_symbol] = @view.create_player_prompt("player1")
+    new_players[:p2_symbol] = @view.create_player_prompt("player2")
+    @game = GamePlay.new(new_players)
     play
   end
 

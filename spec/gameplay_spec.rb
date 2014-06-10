@@ -22,4 +22,16 @@ describe GamePlay do
     game.player_move_to(3)
     game.display_board[3].should eq("x")
   end
+
+  it "should know if row has won" do
+    game.winning_rows.should eq(false)
+  end
+
+  it "should know if column has won" do
+    game.winning_columns.should eq(false)
+  end
+
+  it "should know if diagonal has won" do
+    game.winning_diagonals.should eq(false)
+  end
 end
