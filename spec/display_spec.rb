@@ -23,6 +23,11 @@ describe DisplayUtility do
 
   it "should prompt for player to enter position" do
     STDOUT.should_receive(:puts).with("Game Over!")
-    display.game_over_notice
+    display.gameover_notice
+  end
+
+  it "should prompt error message" do
+    STDOUT.should_receive(:puts).with("That was an invalid option")
+    display.invalid_input_error
   end
 end

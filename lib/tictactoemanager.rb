@@ -1,10 +1,12 @@
 class TicTacToeManager
 
-  def start
+  def initialize
     @view = DisplayUtility.new
-    @view.welcome
-    new_players = create_players until valid_hash(new_players)
+    # @view.welcome
+  end
 
+  def start
+    new_players = valid_players_hash
     @game = GamePlay.new(new_players)
     play
   end
@@ -17,18 +19,27 @@ class TicTacToeManager
       @game.player_move_to(position.to_i)
     end
     @view.display_board(@game.display_board)
-    @view.game_over_notice
+    @view.gameover_notice
   end
 
-  def valid_hash(input)
-    false
+  def valid_players_hash
+    players_hash = prompt_for_players
+    until valid_hash?(players_hash)
+      @view.invalid_input_error
+      players_hash = prompt_for_players
+    end
+    players_hash
   end
 
-  def create_players
-    # until invalid_value()
-      player1_symbol = @view.create_player_prompt("player1")
-      player2_symbol = @view.create_player_prompt("player2")
-    # end
-    {p1_symbol: player1_symbol, p2_symbol: player2_symbol}
+  def prompt_for_players
+    player1 = @view.create_player_prompt("player1")
+    player2 = @view.create_player_prompt("player2")
+    {player1_symbol: player1, player2_symbol: player2}
   end
+
+  def valid_hash?(input)
+    input.each_value {|user_input| return false if user_input.length != 1}
+    true
+  end
+
 end

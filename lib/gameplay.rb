@@ -28,8 +28,8 @@ class GamePlay
   end
 
   def create_players_hash(params)
-    player1 = Player.new(params[:p1_symbol])
-    player2 = Player.new(params[:p2_symbol])
+    player1 = Player.new(params[:player1_symbol])
+    player2 = Player.new(params[:player2_symbol])
     @players = {p1: {next: :p2, player: player1}, p2: {next: :p1, player: player2}}
   end
 end

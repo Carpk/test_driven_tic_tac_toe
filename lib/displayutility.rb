@@ -14,8 +14,12 @@ class DisplayUtility
     gets.chomp
   end
 
-  def game_over_notice
+  def gameover_notice
     puts "Game Over!"
+  end
+
+  def invalid_input_error
+    puts "That was an invalid option"
   end
 
   def display_board(board)
