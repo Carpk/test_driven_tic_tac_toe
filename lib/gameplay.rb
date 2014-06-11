@@ -17,7 +17,7 @@ class GamePlay
     false
   end
 
-  def player_move_to(position)
+  def player_move_to(position)                            # add something here for ai transfer
     token = @current_player[:player].game_piece
     @board.assign_token_to(token, position)
     @current_player = @players[@current_player[:next]]

@@ -1,9 +1,5 @@
 class DisplayUtility
 
-  def welcome
-    puts "Welcome to Tic Tac Toe, press enter to begin."
-  end
-
   def create_player_prompt(player)
     puts "Please enter your game piece symbol for #{player}:"
     gets.chomp
@@ -23,6 +19,7 @@ class DisplayUtility
   end
 
   def display_board(board)
+    clear_screen
     print <<-EOS
      #{board[0]} | #{board[1]} | #{board[2]}
     ---|---|---
@@ -30,5 +27,25 @@ class DisplayUtility
     ---|---|---
      #{board[6]} | #{board[7]} | #{board[8]}
     EOS
+  end
+
+  def welcome
+    clear_screen
+    print <<-EOS
+  Welcome to Tic Tac Toe.
+  Enter 1-9 to make your placement on the grid, such as below:
+
+       1 | 2 | 3
+      ---|---|---
+       4 | 5 | 6
+      ---|---|---
+       7 | 8 | 9
+
+    EOS
+  end
+
+  def clear_screen
+    print "\e[2J"
+    print "\e[H"
   end
 end

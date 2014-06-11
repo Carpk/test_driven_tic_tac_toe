@@ -6,10 +6,10 @@ describe DisplayUtility do
 
   let(:display)  {DisplayUtility.new}
 
-  it "should prompt welcome message" do
-    STDOUT.should_receive(:puts).with("Welcome to Tic Tac Toe, press enter to begin.")
-    display.welcome
-  end
+  # it "should prompt welcome message" do
+  #   STDOUT.should_receive(:puts).with("Welcome to Tic Tac Toe, press enter to begin.")
+  #   display.welcome
+  # end
 
   it "should prompt for player to enter symbol" do
     STDOUT.should_receive(:puts).with("Please enter your game piece symbol for player:")

@@ -3,13 +3,28 @@ class TicTacToeManager
   def initialize
     @view = DisplayUtility.new
     @validator = InputValidator.new
-    # @view.welcome
   end
 
   def start
+    @view.welcome
     new_players = valid_players_hash
     @game = GamePlay.new(new_players)
     play
+  end
+
+  def valid_players_hash
+    players_hash = create_players_hash
+    until @validator.valid_hash?(players_hash)
+      @view.invalid_input_error
+      players_hash = create_players_hash
+    end
+    players_hash
+  end
+
+  def create_players_hash
+    player1 = @view.create_player_prompt("player1")
+    player2 = @view.create_player_prompt("player2")
+    {player1_symbol: player1, player2_symbol: player2}
   end
 
   def play
@@ -21,21 +36,6 @@ class TicTacToeManager
     end
     @view.display_board(@game.display_board)
     @view.gameover_notice
-  end
-
-  def valid_players_hash
-    players_hash = prompt_for_players
-    until @validator.valid_hash?(players_hash)
-      @view.invalid_input_error
-      players_hash = prompt_for_players
-    end
-    players_hash
-  end
-
-  def prompt_for_players
-    player1 = @view.create_player_prompt("player1")
-    player2 = @view.create_player_prompt("player2")
-    {player1_symbol: player1, player2_symbol: player2}
   end
 
   def valid_player_move
