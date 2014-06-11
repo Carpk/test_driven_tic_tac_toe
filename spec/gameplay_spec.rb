@@ -4,7 +4,7 @@ require 'rspec'
 
 describe GamePlay do
 
-  let(:game)  {GamePlay.new({p1_symbol:"x",p2_symbol:"o"})}
+  let(:game)  {GamePlay.new({player1_symbol:"x",player2_symbol:"o"})}
 
 
   it "should know if game is over" do

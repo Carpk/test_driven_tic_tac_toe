@@ -27,7 +27,7 @@ describe DisplayUtility do
   end
 
   it "should prompt error message" do
-    STDOUT.should_receive(:puts).with("That was an invalid option")
+    STDOUT.should_receive(:puts).with("There was an invalid option, please try again")
     display.invalid_input_error
   end
 end

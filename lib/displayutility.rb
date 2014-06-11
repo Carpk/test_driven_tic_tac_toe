@@ -19,7 +19,7 @@ class DisplayUtility
   end
 
   def invalid_input_error
-    puts "That was an invalid option"
+    puts "There was an invalid option, please try again"
   end
 
   def display_board(board)
