@@ -25,4 +25,7 @@ describe GamePlay do
     game.create_players_hash(params).class.should eq(Hash)
   end
 
+  it "should create a hash of current players" do
+    game.create_players({player1_symbol:"x",player2_symbol:"o"})
+  end
 end

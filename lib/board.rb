@@ -35,7 +35,7 @@ class TicTacToeBoard
 
   def matching_rows
     @grid.each_slice(square_root_of_board) do |win_attempt|
-      return true if win_attempt.compact == win_attempt.rotate
+      return win_attempt.first if win_attempt.compact == win_attempt.rotate
     end
     false
   end
@@ -44,7 +44,7 @@ class TicTacToeBoard
     board_divisor = square_root_of_board
     board_divisor.times do |index|
       win_attempt = [@grid[index], @grid[index + board_divisor], @grid[index + board_divisor * 2]]
-      return true if win_attempt.compact == win_attempt.rotate
+      return win_attempt.first if win_attempt.compact == win_attempt.rotate
     end
     false
   end
@@ -56,7 +56,7 @@ class TicTacToeBoard
       forwardslash << win_attempt[-1 - index_offset]
       index_offset += 1
     end
-    return true if forwardslash.compact == forwardslash.rotate
+    return forwardslash.first if forwardslash.compact == forwardslash.rotate
     false
   end
 
@@ -67,7 +67,16 @@ class TicTacToeBoard
       backslash << win_attempt[0 + index_offset]
       index_offset += 1
     end
-    return true if backslash.compact == backslash.rotate
+    return backslash.first if backslash.compact == backslash.rotate
     false
+  end
+
+  def who_won?
+    return matching_rows if matching_rows
+    return matching_columns if matching_columns
+    return matching_forwardslash if matching_forwardslash
+    return matching_backslash if matching_backslash
+
+    return true unless unassigned_positions?
   end
 end

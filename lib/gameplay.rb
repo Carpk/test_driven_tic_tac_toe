@@ -2,22 +2,25 @@ class GamePlay
 
   def initialize(params)
     @board = TicTacToeBoard.new
-    @players = create_players_hash(params)
+    @players = create_players_hash(params)  # break these out in separate function
     @current_player = @players[:p1]
   end
 
-  def gameover?
-    return true unless @board.unassigned_positions?
+  def create_players(params)
+    @players = create_players_hash(params)  # break these out in separate function
+    @current_player = @players[:p1]
+  end
 
+  def gameover?                                     # remove or fix
+    return true unless @board.unassigned_positions?
     return true if @board.matching_rows
     return true if @board.matching_columns
     return true if @board.matching_forwardslash
     return true if @board.matching_backslash
-
     false
   end
 
-  def player_move_to(position)                            # add something here for ai transfer
+  def player_move_to(position)                      # add something here for ai transfer
     token = @current_player[:player].game_piece
     @board.assign_token_to(token, position)
     @current_player = @players[@current_player[:next]]
