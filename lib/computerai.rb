@@ -11,9 +11,8 @@ class ComputerAi
 
     game.display_board.each_with_index do |empty_position, empty_index|
       next if empty_position != " "
-      # played_board = Marshal::load(Marshal.dump(board))
       played_game = game.clone
-      played_game.display_board[empty_index] = current_player
+      played_game.display_board[empty_index] = current_player #broken
       game_values[empty_index] = assess_game(played_game, passing_player, current_player)
     end
     game_values
