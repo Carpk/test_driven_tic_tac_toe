@@ -3,12 +3,13 @@ class TicTacToeManager
   def initialize
     @view = DisplayUtility.new
     @validator = InputValidator.new
+    @game = GamePlay.new
   end
 
   def start
     @view.welcome
     new_players = valid_players_hash
-    @game = GamePlay.new(new_players)
+    @game.create_players(new_players)
     play
   end
 

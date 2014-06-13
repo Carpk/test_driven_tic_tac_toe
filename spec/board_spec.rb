@@ -68,18 +68,19 @@ describe TicTacToeBoard do
     board.matching_backslash.should eq("x")
   end
 
-  it "should know if game is over" do
-    board.gameover?.should eq(false)
-  end
+  # it "should know if game is over" do             #to be removed
+  #   board.gameover?.should eq(false)
+  # end
 
-  it "should know if game is over" do
-    board.grid = [nil,nil,"o",nil,"o",nil,"o",nil,nil]
-    board.gameover?.should eq(true)
-  end
+  # it "should know if game is over" do             #to be removed
+  #   board.grid = [nil,nil,"o",nil,"o",nil,"o",nil,nil]
+  #   board.gameover?.should eq(true)
+  # end
 
   it "should know if game is over" do
     board.grid = ["o","o","o",nil,nil,nil,nil,nil,nil]
-    board.who_won?.should eq("o")
+    board.matching_rows
+    board.winner_value.should eq("o")
   end
 
   # it "should know if game is over" do
