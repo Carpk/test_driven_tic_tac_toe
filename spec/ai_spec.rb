@@ -10,13 +10,15 @@ describe ComputerAi do
   it "should create a value based on board win" do
     new_board = ["o", "o", "o", "x", nil, "x", nil, nil, nil]
     game.set_board_values(new_board)
+    game.gameover?
     computer.create_value(game).should eq(-10)
   end
 
-  # it "should determine the next position to move to" do
-  #   board.grid = ["x", "x", nil, nil, nil, "o", nil, nil, "o"]
-  #   computer.evaluate_board(board, "x", "o").should eq(2)
-  # end
+  it "should determine the next position to move to" do
+    new_board = ["x", "x", nil, "o", nil, "o", nil, "o", nil]
+    game.set_board_values(new_board)
+    computer.assess_game(game).should eq(2)
+  end
 
   # it "should create a value based on board win" do
   #   game.set_board_values(["x", "x", "x", "o", nil, "o", nil, nil, nil])

@@ -33,13 +33,15 @@ describe GamePlay do
     game.display_board[4].should eq("o")
   end
 
-  it "should send the current Game to Ai" do
-    game.create_players({player1_symbol:"x",player2_symbol:"o"})
-    game.computer_turn.should eq(nil)
-  end
-
   # it "should send the current Game to Ai" do
   #   game.create_players({player1_symbol:"x",player2_symbol:"o"})
   #   game.computer_turn.should eq(nil)
   # end
+
+  it "should return who won the game" do
+    board = ["x", "x", "x", nil, "o", nil, nil, nil, nil]
+    game.set_board_values(board)
+    game.gameover?
+    game.who_won?.should eq("x")
+  end
 end

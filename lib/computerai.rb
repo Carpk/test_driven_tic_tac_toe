@@ -5,19 +5,18 @@ class ComputerAi
     @enemy_piece = opponent
   end
 
-  def assess_game(game)
-    # return create_value(board) + depth if board.gameover?
-    # board_values = []
-    # depth -= 1
+  def assess_game(game, current_player = @game_piece, passing_player = @enemy_piece)
+    return create_value(game) if game.gameover?
+    game_values = []
 
-    # board.grid.each_with_index do |empty_position, empty_index|
-    #   next if empty_position != nil
-    #   # played_board = Marshal::load(Marshal.dump(board))
-    #   played_board = board.clone
-    #   played_board.grid[empty_index] = current
-    #   board_values[empty_index] = evaluate_board(played_board, passing, current)
-    # end
-    # board_values
+    game.display_board.each_with_index do |empty_position, empty_index|
+      next if empty_position != " "
+      # played_board = Marshal::load(Marshal.dump(board))
+      played_game = game.clone
+      played_game.display_board[empty_index] = current_player
+      game_values[empty_index] = assess_game(played_game, passing_player, current_player)
+    end
+    game_values
   end
 
   # def assert_values(board)
