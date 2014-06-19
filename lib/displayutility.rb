@@ -18,7 +18,9 @@ class DisplayUtility
     puts "There was an invalid option, please try again"
   end
 
-  def display_board(board)
+  def display_board(new_board)
+    board = new_board.dup
+    board.each_with_index{|e,i| board[i] = " " if e == nil}
     clear_screen
     print <<-EOS
      #{board[0]} | #{board[1]} | #{board[2]}

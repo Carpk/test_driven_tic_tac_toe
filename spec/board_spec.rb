@@ -10,8 +10,17 @@ describe TicTacToeBoard do
     board.grid.length.should eq(9)
   end
 
-  it "should know if there are unassigned positions" do
+  it "should be true for having unassigned positions on board" do
     board.unassigned_positions?.should eq(true)
+  end
+
+  it "should be false for empty board" do
+    board.board_full?.should eq(false)
+  end
+
+  it "should be false for empty board" do
+    board.grid = ["o", "x", "o", "x", "o", "x", "x", "o", "x"]
+    board.board_full?.should eq(true)
   end
 
   it "should return correct version of board" do
@@ -33,39 +42,39 @@ describe TicTacToeBoard do
   end
 
   it "should know if row set has won" do
-    board.matching_rows.should eq(false)
+    board.matching_rows?.should eq(false)
   end
 
   it "should know if row set has won" do
     board.grid = [nil,nil,nil,"e","e","e",nil,nil,nil]
-    board.matching_rows.should eq("e")
+    board.matching_rows?.should eq("e")
   end
 
   it "should know if column set has won" do
-    board.matching_columns.should eq(false)
+    board.matching_columns?.should eq(false)
   end
 
   it "should know if column set has won" do
     board.grid = [nil,nil,"t",nil,nil,"t",nil,nil,"t"]
-    board.matching_columns.should eq("t")
+    board.matching_columns?.should eq("t")
   end
 
   it "should know if diagonal set has won" do
-    board.matching_forwardslash.should eq(false)
+    board.matching_forwardslash?.should eq(false)
   end
 
   it "should know if diagonal set has won" do
     board.grid = [nil,nil,"o",nil,"o",nil,"o",nil,nil]
-    board.matching_forwardslash.should eq("o")
+    board.matching_forwardslash?.should eq("o")
   end
 
   it "should know if diagonal has won" do
-    board.matching_backslash.should eq(false)
+    board.matching_backslash?.should eq(false)
   end
 
   it "should know if diagonal has won" do
     board.grid = ["x",nil,nil,nil,"x",nil,nil,nil,"x"]
-    board.matching_backslash.should eq("x")
+    board.matching_backslash?.should eq("x")
   end
 
   # it "should know if game is over" do             #to be removed
@@ -79,7 +88,7 @@ describe TicTacToeBoard do
 
   it "should know if game is over" do
     board.grid = ["o","o","o",nil,nil,nil,nil,nil,nil]
-    board.matching_rows
+    board.matching_rows?
     board.winner_value.should eq("o")
   end
 

@@ -11,12 +11,17 @@ class GamePlay
     @current_player = @players[:p1]
   end
 
-  def gameover?                         # remove or fix
-    return true unless @board.unassigned_positions?
-    return true if @board.matching_rows
-    return true if @board.matching_columns
-    return true if @board.matching_forwardslash
-    return true if @board.matching_backslash
+  def gameover?                                    # remove or fix
+    game_winner?
+    return true if @board.board_full?
+    false
+  end
+
+  def game_winner?
+    return true if @board.matching_rows?
+    return true if @board.matching_columns?
+    return true if @board.matching_forwardslash?
+    return true if @board.matching_backslash?
     false
   end
 
@@ -36,11 +41,14 @@ class GamePlay
   end
 
   def display_board
-    @board.present_board
+    @board.grid
   end
 
   def who_won?
     @board.winner_value
   end
 
+  def tie_game?
+    @board.board_full? && game_winner? == false
+  end
 end
