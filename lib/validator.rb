@@ -8,7 +8,7 @@ class InputValidator
 
   def valid_move?(position)
     return false if position == ""
-    (0..8).to_a.to_s.include?(position)
+    (1..9).to_a.to_s.include?(position)
   end
 
 end

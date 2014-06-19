@@ -1,5 +1,14 @@
 class TicTacToeManager
 
+  CONVERSION = {1 => 0,
+                2 => 1,
+                3 => 2,
+                4 => 3,
+                5 => 4,
+                6 => 5,
+                7 => 6,
+                8 => 7,
+                9 => 8}
   def initialize
     @view = DisplayUtility.new
     @validator = InputValidator.new
@@ -33,7 +42,8 @@ class TicTacToeManager
       board = @game.display_board
       @view.display_board(board)
       position = valid_player_move
-      @game.player_move_to(position.to_i)
+      converted = CONVERSION[position.to_i]
+      @game.player_move_to(converted)
     end
     @view.display_board(@game.display_board)
     @view.gameover_notice
