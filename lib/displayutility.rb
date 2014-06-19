@@ -5,8 +5,8 @@ class DisplayUtility
     gets.chomp
   end
 
-  def prompt_player_move
-    puts "Please enter your position on the keypad:"
+  def prompt_player_move(player_token)
+    puts "Please enter your position on the keypad for player #{player_token}:"
     gets.chomp
   end
 
@@ -15,7 +15,7 @@ class DisplayUtility
   end
 
   def invalid_input_error
-    puts "There was an invalid option, please try again"
+    puts "That was an invalid option, please try again"
   end
 
   def display_board(new_board)

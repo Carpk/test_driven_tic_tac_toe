@@ -1,11 +1,11 @@
 class GamePlay
-
+  attr_reader :current_player
   def initialize
     @board = TicTacToeBoard.new
   end
 
   def create_players(params)
-    player1 = Player.new(params[:player1_symbol], true) # pass true if player is AI
+    player1 = Player.new(params[:player1_symbol]) # pass true if player is AI
     player2 = Player.new(params[:player2_symbol])
     @players = {p1: {next: :p2, player: player1}, p2: {next: :p1, player: player2}}
     @current_player = @players[:p1]

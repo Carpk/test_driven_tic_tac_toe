@@ -16,9 +16,14 @@ describe DisplayUtility do
     display.create_player_prompt("player")
   end
 
-  it "should prompt for player to enter position" do
-    STDOUT.should_receive(:puts).with("Please enter your position on the keypad:")
-    display.prompt_player_move
+  it "should display prompt for player x to enter position" do
+    STDOUT.should_receive(:puts).with("Please enter your position on the keypad for player x:")
+    display.prompt_player_move("x")
+  end
+
+  it "should display prompt for player o to enter position" do
+    STDOUT.should_receive(:puts).with("Please enter your position on the keypad for player o:")
+    display.prompt_player_move("o")
   end
 
   it "should prompt for player to enter position" do
@@ -27,7 +32,7 @@ describe DisplayUtility do
   end
 
   it "should prompt error message" do
-    STDOUT.should_receive(:puts).with("There was an invalid option, please try again")
+    STDOUT.should_receive(:puts).with("That was an invalid option, please try again")
     display.invalid_input_error
   end
 end

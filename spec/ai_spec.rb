@@ -43,14 +43,14 @@ describe ComputerAi do
     computer.new_position.should eq(2)
   end
 
-  it "should determine the next position to move to" do
-    new_board = ["o", nil, nil,
-                 "o", nil, "o",
-                 "x", "x", nil]
-    game.set_board_values(new_board)
-    computer.evaluate_board(game)#.should eq(8)
-    computer.new_position.should eq(8)
-  end
+  # it "should determine the next position to move to" do
+  #   new_board = ["o", nil, nil,
+  #                "o", nil, "o",
+  #                "x", "x", nil]
+  #   game.set_board_values(new_board)
+  #   computer.evaluate_board(game)#.should eq(8)
+  #   computer.new_position.should eq(8)
+  # end
 
   # it "should create a value based on board win" do
   #   game.set_board_values(["x", "x", "x", "o", nil, "o", nil, nil, nil])
