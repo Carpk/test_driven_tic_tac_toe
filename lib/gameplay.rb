@@ -11,17 +11,13 @@ class GamePlay
     @current_player = @players[:p1]
   end
 
-  def gameover?                                    # remove or fix
-    game_winner?
-    return true if @board.board_full?
+  def gameover?
+    return true if @board.board_full? || game_winner?
     false
   end
 
   def game_winner?
-    return true if @board.matching_rows?
-    return true if @board.matching_columns?
-    return true if @board.matching_forwardslash?
-    return true if @board.matching_backslash?
+    return true if @board.matching_rows? || @board.matching_columns? || @board.matching_forwardslash? || @board.matching_backslash?
     false
   end
 
@@ -29,14 +25,14 @@ class GamePlay
     @board.grid = new_board
   end
 
-  def player_move_to(position)          # add something here for ai transfer
+  def player_move_to(position)
     token = @current_player[:player].game_piece
     # position = computer_turn if @current_player[:player].ai == true
     @board.assign_token_to(token, position)
     @current_player = @players[@current_player[:next]]
   end
 
-  def computer_turn
+  def computer_turn # no tests written
     @current_player[:player].game_to_ai(self)
   end
 
@@ -45,6 +41,7 @@ class GamePlay
   end
 
   def who_won?
+    gameover?
     @board.winner_value
   end
 

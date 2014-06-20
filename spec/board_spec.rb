@@ -19,7 +19,9 @@ describe TicTacToeBoard do
   end
 
   it "should be false for empty board" do
-    board.grid = ["o", "x", "o", "x", "o", "x", "x", "o", "x"]
+    board.grid = ["o", "x", "o",
+                  "x", "o", "x",
+                  "x", "o", "x"]
     board.board_full?.should eq(true)
   end
 
@@ -45,9 +47,25 @@ describe TicTacToeBoard do
     board.matching_rows?.should eq(false)
   end
 
-  it "should know if row set has won" do
-    board.grid = [nil,nil,nil,"e","e","e",nil,nil,nil]
+  it "should know if row set has won with top set" do
+    board.grid = ['f','f','f',
+                  nil,nil,nil,
+                  nil,nil,nil]
+    board.matching_rows?.should eq("f")
+  end
+
+  it "should know if row set has won with middle set" do
+    board.grid = [nil,nil,nil,
+                  "e","e","e",
+                  nil,nil,nil]
     board.matching_rows?.should eq("e")
+  end
+
+  it "should know if row set has won with bottom set" do
+    board.grid = [nil,nil,nil,
+                  nil,nil,nil,
+                  "g","g","g"]
+    board.matching_rows?.should eq("g")
   end
 
   it "should know if column set has won" do
