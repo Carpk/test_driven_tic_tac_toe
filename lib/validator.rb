@@ -6,9 +6,8 @@ class InputValidator
     true
   end
 
-  def valid_move?(position)
-    return false if position == ""
-    (1..9).to_a.to_s.include?(position)
+  def valid_move?(board, position)
+    return false if position.class == String || board[position - 1] != nil
+    (1..9).to_a.include?(position)
   end
-
 end

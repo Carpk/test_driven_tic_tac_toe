@@ -9,6 +9,7 @@ class TicTacToeManager
                 7 => 6,
                 8 => 7,
                 9 => 8}
+
   def initialize
     @view = DisplayUtility.new
     @validator = InputValidator.new
@@ -42,8 +43,7 @@ class TicTacToeManager
       board = @game.display_board
       @view.display_board(board)
       position = valid_player_move
-      converted = CONVERSION[position.to_i]
-      @game.player_move_to(converted)
+      @game.player_move_to(position)
     end
     @view.display_board(@game.display_board)
     @view.gameover_notice
@@ -51,12 +51,12 @@ class TicTacToeManager
 
   def valid_player_move
     player = @game.current_player[:player].game_piece
-    new_position = @view.prompt_player_move(player)
-    until @validator.valid_move?(new_position)
+    new_position = @view.prompt_player_move(player).to_i
+    until @validator.valid_move?(@game.display_board, new_position)
       @view.invalid_input_error
-      new_position = @view.prompt_player_move(player)
+      new_position = @view.prompt_player_move(player).to_i
     end
-    new_position
+    CONVERSION[new_position]
   end
 
 end
