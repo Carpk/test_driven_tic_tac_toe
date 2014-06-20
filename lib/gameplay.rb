@@ -32,9 +32,9 @@ class GamePlay
     @current_player = @players[@current_player[:next]]
   end
 
-  def computer_turn # no tests written
-    @current_player[:player].game_to_ai(self)
-  end
+  # def computer_turn # no tests written
+  #   @current_player[:player].game_to_ai(self)
+  # end
 
   def display_board
     @board.grid

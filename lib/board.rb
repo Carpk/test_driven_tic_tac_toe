@@ -6,7 +6,7 @@ class TicTacToeBoard
     @winner_value = false
   end
 
-  def unassigned_positions?
+  def unassigned_positions? # ask if both methods are needed, created for readability
     @grid.include?(nil)
   end
 
@@ -16,11 +16,6 @@ class TicTacToeBoard
 
   def assign_token_to(token, position)
     @grid[position] = token
-  end
-
-  def present_board
-    pretty_board = @grid.dup
-    pretty_board.each_with_index{|e,i| pretty_board[i] = " " if e == nil}
   end
 
   def square_root_of_board
@@ -70,12 +65,4 @@ class TicTacToeBoard
     false
   end
 
-  # def who_won?
-  #   return matching_rows if matching_rows
-  #   return matching_columns if matching_columns
-  #   return matching_forwardslash if matching_forwardslash
-  #   return matching_backslash if matching_backslash
-
-  #   return true unless unassigned_positions?
-  # end
 end
