@@ -48,13 +48,13 @@ describe GamePlay do
     game.game_winner?.should eq(false)
   end
 
-  it "should know if game has a forwardslash winner" do
-    board = ["o", nil, "x",
-             nil, "o", nil,
-             nil, nil, "o"]
-    game.set_board_values(board)
-    game.game_winner?.should eq(true)
-  end
+  # it "should know if game has a forwardslash winner" do
+  #   board = ["o", nil, "x",
+  #            nil, "o", nil,
+  #            nil, nil, "o"]
+  #   game.set_board_values(board)
+  #   game.game_winner?.should eq(true)
+  # end
 
   it "display board should be of the correct length" do
     game.display_board.length.should eq(9)

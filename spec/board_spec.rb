@@ -78,21 +78,21 @@ describe TicTacToeBoard do
     board.grid = ['f','f','f',
                   nil,nil,nil,
                   nil,nil,nil]
-    board.matching_rows?.should eq("f")
+    board.matching_rows?.should eq(true)
   end
 
   it "should know if row has won with middle set" do
     board.grid = [nil,nil,nil,
                   "e","e","e",
                   nil,nil,nil]
-    board.matching_rows?.should eq("e")
+    board.matching_rows?.should eq(true)
   end
 
   it "should know if row has won with bottom set" do
     board.grid = [nil,nil,nil,
                   nil,nil,nil,
                   "g","g","g"]
-    board.matching_rows?.should eq("g")
+    board.matching_rows?.should eq(true)
   end
 
   it "should return false column if set has not won" do
@@ -103,21 +103,21 @@ describe TicTacToeBoard do
     board.grid = ["r",nil,nil,
                   "r",nil,nil,
                   "r",nil,nil]
-    board.matching_columns?.should eq("r")
+    board.matching_columns?.should eq(true)
   end
 
   it "should know if column has won with middle set" do
     board.grid = [nil,"p",nil,
                   nil,"p",nil,
                   nil,"p",nil]
-    board.matching_columns?.should eq("p")
+    board.matching_columns?.should eq(true)
   end
 
   it "should know if column has won with last set" do
     board.grid = [nil,nil,"t",
                   nil,nil,"t",
                   nil,nil,"t"]
-    board.matching_columns?.should eq("t")
+    board.matching_columns?.should eq(true)
   end
 
   it "should return false if forwardslash diagonal set has not won" do
@@ -128,7 +128,7 @@ describe TicTacToeBoard do
     board.grid = [nil,nil,"o",
                   nil,"o",nil,
                   "o",nil,nil]
-    board.matching_forwardslash?.should eq("o")
+    board.matching_forwardslash?.should eq(true)
   end
 
   it "should return false if diagonal has not won" do
@@ -139,7 +139,7 @@ describe TicTacToeBoard do
     board.grid = ["x",nil,nil,
                   nil,"x",nil,
                   nil,nil,"x"]
-    board.matching_backslash?.should eq("x")
+    board.matching_backslash?.should eq(true)
   end
 
   it "should know if game is over" do

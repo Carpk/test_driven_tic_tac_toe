@@ -10,8 +10,8 @@ class Player
     @ai = ComputerAi.new("x", "o")
   end
 
-  def game_to_ai(game)
-    @ai.assess_game(game)
-  end
+  # def game_to_ai(game)
+  #   @ai.assess_game(game)
+  # end
 
 end

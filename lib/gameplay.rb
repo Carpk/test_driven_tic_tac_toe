@@ -12,13 +12,11 @@ class GamePlay
   end
 
   def gameover?
-    return true if @board.board_full? || game_winner?
-    false
+    @board.board_full? || game_winner?
   end
 
   def game_winner?
-    return true if @board.matching_rows? || @board.matching_columns? || @board.matching_forwardslash? || @board.matching_backslash?
-    false
+    @board.matching_rows? || @board.matching_columns? || @board.matching_forwardslash? || @board.matching_backslash?
   end
 
   def set_board_values(new_board)
