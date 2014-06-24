@@ -14,8 +14,8 @@ class Player
     ai_switch[0].downcase == "y"
   end
 
-  # def game_to_ai(game)
-  #   @ai.assess_game(game)
-  # end
+  def game_to_ai(board)
+    @ai.assert_values(board)
+  end
 
 end

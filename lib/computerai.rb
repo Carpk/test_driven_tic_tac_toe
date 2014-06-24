@@ -12,9 +12,10 @@ class ComputerAi
       next if empty_position != nil
       possible_game = board.dup
       possible_game[empty_index] = @game_piece
+      puts "#{possible_game}"
       position_values[empty_index] = evaluate_board(possible_game, @enemy_piece, @game_piece)
     end
-    puts "#{position_values}"
+    # puts "#{position_values}"
     position_values.index(position_values.compact.max)
   end
 
@@ -27,7 +28,7 @@ class ComputerAi
       played_board[empty_index] = current
       board_values[empty_index] = evaluate_board(played_board, passing, current)
     end
-
+    puts "board values: #{board_values}"
     if current == @game_piece
       best_value = board_values.compact.max
       @new_position = board_values.index(best_value)

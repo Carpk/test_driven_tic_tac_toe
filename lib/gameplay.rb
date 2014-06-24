@@ -25,15 +25,16 @@ class GamePlay
 
   def player_move_to(position)
     token = @current_player[:player].game_piece
-    puts @current_player[:player]
+    puts @current_player[:player].ai\
     # position = computer_turn if @current_player[:player].ai == true
     @board.assign_token_to(token, position)
     @current_player = @players[@current_player[:next]]
   end
 
-  # def computer_turn # no tests written
-  #   @current_player[:player].game_to_ai(self)
-  # end
+  def computer_turn
+    board = @board.grid
+    @current_player[:player].game_to_ai(board)
+  end
 
   def display_board
     @board.grid

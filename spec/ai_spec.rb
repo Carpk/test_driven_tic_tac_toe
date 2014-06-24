@@ -17,11 +17,21 @@ describe ComputerAi do
   #   computer.new_position.should eq(2)
   # end
 
+  it "takes only spot on board" do
+    board = ["o", "x", nil,
+             "x", "o", "x",
+             nil, "o", "x"]
+    # board = ["o", "x", "o",
+    #          "x", nil, "x",
+    #          "o", "o", "x"]
+    computer.assert_values(board).should eq(4)
+  end
+
   xit "should block player from win" do
-    new_board = ["o", "x", nil,
-                 "o", nil, "o",
-                 "x", nil, nil]
-    computer.assert_values(new_board).should eq(4)
+    board = ["o", "x", nil,
+             "o", nil, "o",
+             "x", nil, nil]
+    computer.assert_values(board).should eq(4)
   end
 
   xit "should take win when available" do

@@ -121,10 +121,21 @@ describe GamePlay do
   end
 
   it "should know there is no tie with incomplete game" do
-    new_board = ["o", "x", "o",
-                 "x", nil, "x",
-                 "o", "o", "x"]
-    game.set_board_values(new_board)
+    board = ["o", "x", "o",
+             "x", nil, "x",
+             "o", "o", "x"]
+    game.set_board_values(board)
     game.tie_game?.should eq(false)
   end
+
+  xit "should get a response from the ai" do
+    board = ["o", "x", "o",
+             "x", nil, "x",
+             "o", "o", "x"]
+    hash = {player1: {symbol: "x", ai: "y"}, player2: {symbol: "o", ai: "n"}}
+    game.create_players(hash)
+    game.set_board_values(board)
+    game.computer_turn.should eq(4)
+  end
+
 end
