@@ -1,8 +1,8 @@
 class InputValidator
 
-  def valid_hash?(input)
-    return false if input[:player1_symbol] == input[:player2_symbol]
-    input.each_value {|user_input| return false if user_input.length != 1}
+  def valid_hash?(players_hash)
+    return false if players_hash[:player1][:symbol] == players_hash[:player2][:symbol]
+    players_hash.each_value {|user_input| return false if user_input[:symbol].length != 1}
     true
   end
 

@@ -17,7 +17,7 @@ describe ComputerAi do
   #   computer.new_position.should eq(2)
   # end
 
-  it "should block player from win" do
+  xit "should block player from win" do
     new_board = ["o", "x", nil,
                  "o", nil, "o",
                  "x", nil, nil]
@@ -25,17 +25,17 @@ describe ComputerAi do
   end
 
   xit "should take win when available" do
-    new_board = ["o", "x", nil,
-                 "o", nil, "o",
+    new_board = ["o", nil, "x",
+                 nil, nil, "o",
                  "x", nil, nil]
     computer.assert_values(new_board).should eq(4)
   end
 
   xit "should start game at known optimal positions" do
-    new_board = ["o", nil, "x",
-                 "o", nil, "o",
-                 "x", nil, nil]
-    computer.assert_values(new_board).should eq(4)
+    new_board = [nil, nil, nil,
+                 nil, nil, nil,
+                 nil, nil, nil]
+    computer.assert_values(new_board).should eq(0)
   end
 
   # it "does something else"
@@ -54,44 +54,44 @@ describe ComputerAi do
 
   it "should return true if game is over with full board" do
     board = ["o", "x", "o",
-                 "x", "o", "x",
-                 "x", "o", "x"]
+             "x", "o", "x",
+             "x", "o", "x"]
     computer.gameover?(board).should eq(true)
   end
 
   it "should return true if game is over with column win" do
     board = ["o", "x", "o",
-                 "x", "o", "x",
-                 nil, nil, "o"]
+             "x", "o", "x",
+             nil, nil, "o"]
     computer.gameover?(board).should eq(true)
   end
 
   it "should return false if game is not over" do
     board = ["x", "x", "o",
-                 "x", "o", "x",
-                 nil, nil, "o"]
+             "x", "o", "x",
+             nil, nil, "o"]
     computer.gameover?(board).should eq(false)
   end
 
-  it "should create a value based on tie game" do
+  it "should return a 0 value based on tie game" do
     board = ["o", "x", "o",
-                 "x", "o", "x",
-                 "x", "o", "x"]
+             "x", "o", "x",
+             "x", "o", "x"]
 
     computer.create_value(board).should eq(0)
   end
 
-  it "should create a value based on board lose" do
+  it "should create a negitve value based on board lose" do
     board = ["o", "o", "o",
-                 "x", nil, "x",
-                 nil, nil, nil]
+             "x", nil, "x",
+             nil, nil, nil]
     computer.create_value(board).should eq(-1)
   end
 
-  it "should create a value based on board win" do
+  it "should create a positive value based on board win" do
     board = ["x", nil, nil,
-                 "o", "x", "o",
-                 nil, nil, "x"]
+             "o", "x", "o",
+             nil, nil, "x"]
     computer.create_value(board).should eq(1)
   end
 

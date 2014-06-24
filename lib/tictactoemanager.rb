@@ -1,7 +1,5 @@
 class TicTacToeManager
 
-  CONVERSION = {1=>0, 2=>1, 3=>2, 4=>3, 5=>4, 6=>5, 7=>6, 8=>7, 9=>8} #just subtract 1
-
   def initialize
     @view = DisplayUtility.new
     @validator = InputValidator.new
@@ -25,9 +23,11 @@ class TicTacToeManager
   end
 
   def create_players_hash
-    player1 = @view.create_player_prompt("player1")
-    player2 = @view.create_player_prompt("player2")
-    {player1_symbol: player1, player2_symbol: player2}
+    p1_symbol = @view.create_player_prompt("player1")
+    p1_ai = @view.create_ai_request(p1_symbol)
+    p2_symbol = @view.create_player_prompt("player2")
+    p2_ai = @view.create_ai_request(p2_symbol)
+    {player1: {symbol: p1_symbol, ai: p1_ai}, player2: {symbol: p2_symbol, ai: p2_ai}}
   end
 
   def play
@@ -48,7 +48,7 @@ class TicTacToeManager
       @view.invalid_input_error
       new_position = @view.prompt_player_move(player).to_i
     end
-    CONVERSION[new_position]
+    new_position - 1
   end
 
 end

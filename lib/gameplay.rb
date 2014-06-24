@@ -5,8 +5,8 @@ class GamePlay
   end
 
   def create_players(params)
-    player1 = Player.new(params[:player1_symbol]) # pass true if player is AI
-    player2 = Player.new(params[:player2_symbol])
+    player1 = Player.new(params[:player1]) # pass true if player is AI
+    player2 = Player.new(params[:player2])
     @players = {p1: {next: :p2, player: player1}, p2: {next: :p1, player: player2}}
     @current_player = @players[:p1]
   end
@@ -25,6 +25,7 @@ class GamePlay
 
   def player_move_to(position)
     token = @current_player[:player].game_piece
+    puts @current_player[:player]
     # position = computer_turn if @current_player[:player].ai == true
     @board.assign_token_to(token, position)
     @current_player = @players[@current_player[:next]]

@@ -5,6 +5,11 @@ class DisplayUtility
     gets.chomp
   end
 
+  def create_ai_request(player)
+    puts "Will #{player} be a computer? (y or n)"
+    gets.chomp
+  end
+
   def prompt_player_move(player_token)
     puts "Please enter your position on the keypad for player #{player_token}:"
     gets.chomp

@@ -7,12 +7,13 @@ describe GamePlay do
   let(:game)      {GamePlay.new}
 
   it "should create new players from hash" do
-    hash = {player1_symbol:"x",player2_symbol:"o"}
+    hash = {player1: {symbol: "x", ai: "n"}, player2: {symbol: "o", ai: "n"}}
     game.create_players(hash).class.should eq(Hash)
   end
 
   it "should know if game is over" do
-    game.create_players({player1_symbol:"x",player2_symbol:"o"})
+    hash = {player1: {symbol: "x", ai: "n"}, player2: {symbol: "o", ai: "n"}}
+    game.create_players(hash)
     game.gameover?.should eq(false)
   end
 
@@ -61,14 +62,15 @@ describe GamePlay do
   end
 
   it "game token should occupy position" do
-    game.create_players({player1_symbol:"x",player2_symbol:"o"})
+    hash = {player1: {symbol: "x", ai: "n"}, player2: {symbol: "o", ai: "n"}}
+    game.create_players(hash)
     game.player_move_to(3)
     game.display_board[3].should eq("x")
   end
 
   it "should create a players hash" do
-    params = {player1_symbol:"x",player2_symbol:"o"}
-    game.create_players(params).class.should eq(Hash)
+    hash = {player1: {symbol: "x", ai: "n"}, player2: {symbol: "o", ai: "n"}}
+    game.create_players(hash).class.should eq(Hash)
   end
 
   it "should correctly set board values" do
@@ -80,7 +82,8 @@ describe GamePlay do
   end
 
   it "should move player to correct position" do
-    game.create_players({player1_symbol:"x",player2_symbol:"o"})
+    hash = {player1: {symbol: "x", ai: "n"}, player2: {symbol: "o", ai: "n"}}
+    game.create_players(hash)
     game.player_move_to(5)
     game.display_board[5].should eq("x")
   end

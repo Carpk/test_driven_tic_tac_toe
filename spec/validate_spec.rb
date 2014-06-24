@@ -10,22 +10,22 @@ describe InputValidator do
                     nil, nil, nil]}
 
   it "should validate if hash is acceptable" do
-    hash = {player1_symbol: "1", player2_symbol: "2"}
+    hash = {player1: {symbol: "1", ai: "n"}, player2: {symbol: "2", ai: "n"}}
     validate.valid_hash?(hash).should eq(true)
   end
 
   it "should not validate if token is less than 1 character" do
-    hash = {player1_symbol: "", player2_symbol: "2"}
+    hash = {player1: {symbol: "", ai: "n"}, player2: {symbol: "2", ai: "n"}}
     validate.valid_hash?(hash).should eq(false)
   end
 
   it "should not validate if token is greater than 1 character" do
-    hash = {player1_symbol: "1", player2_symbol: "tree"}
+    hash = {player1: {symbol: "1", ai: "n"}, player2: {symbol: "tree", ai: "n"}}
     validate.valid_hash?(hash).should eq(false)
   end
 
   it "should not validate if both tokens are the same" do
-    hash = {player1_symbol: "g", player2_symbol: "g"}
+    hash = {player1: {symbol: "g", ai: "n"}, player2: {symbol: "g", ai: "n"}}
     validate.valid_hash?(hash).should eq(false)
   end
 
