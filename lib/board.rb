@@ -6,7 +6,7 @@ class TicTacToeBoard
     @winner_value = false
   end
 
-  def unassigned_positions? # ask if both methods are needed, created for readability
+  def unassigned_positions?
     @grid.include?(nil)
   end
 
@@ -78,4 +78,5 @@ class TicTacToeBoard
       false
     end
   end
+
 end

@@ -1,14 +1,15 @@
 class Player
-  attr_reader :game_piece, :ai
+  attr_reader :game_piece, :ai, :computer_active
 
   def initialize(params)
     @game_piece = params[:symbol]
-    create_ai if check_for_ai(params[:ai])
+    @computer_active = check_for_ai(params[:ai])
+    @ai = ComputerAi.new(@game_piece, params[:opponent])
   end
 
-  def create_ai
-    @ai = ComputerAi.new("x", "o")
-  end
+  # def create_ai(enemy)
+  #   @ai = ComputerAi.new(@game_piece, enemy)
+  # end
 
   def check_for_ai(ai_switch)
     ai_switch[0].downcase == "y"

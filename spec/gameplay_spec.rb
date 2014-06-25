@@ -92,16 +92,14 @@ describe GamePlay do
     board = ["x", "x", "x",
              nil, "o", nil,
              nil, nil, nil]
-    game.set_board_values(board)
-    game.who_won?.should eq("x")
+    game.who_won?(board).should eq("x")
   end
 
   it "should return who won the game" do
     board = ["x", "o", "x",
              nil, "o", nil,
              nil, "o", nil]
-    game.set_board_values(board)
-    game.who_won?.should eq("o")
+    game.who_won?(board).should eq("o")
   end
 
   it "should know the game is a tie" do
@@ -128,7 +126,7 @@ describe GamePlay do
     game.tie_game?.should eq(false)
   end
 
-  xit "should get a response from the ai" do
+  it "should get a response from the ai" do
     board = ["o", "x", "o",
              "x", nil, "x",
              "o", "o", "x"]

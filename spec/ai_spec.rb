@@ -18,34 +18,38 @@ describe ComputerAi do
   # end
 
   it "takes only spot on board" do
-    board = ["o", "x", nil,
-             "x", "o", "x",
-             nil, "o", "x"]
-    # board = ["o", "x", "o",
-    #          "x", nil, "x",
-    #          "o", "o", "x"]
+    board = ["o", "x", "o",
+             "x", nil, "x",
+             "o", "o", "x"]
     computer.assert_values(board).should eq(4)
   end
 
-  xit "should block player from win" do
+  it "should block player from win" do
     board = ["o", "x", nil,
              "o", nil, "o",
              "x", nil, nil]
     computer.assert_values(board).should eq(4)
   end
 
-  xit "should take win when available" do
-    new_board = ["o", nil, "x",
-                 nil, nil, "o",
-                 "x", nil, nil]
-    computer.assert_values(new_board).should eq(4)
+  xit "should take optimal position" do
+    board = [nil, nil, "o",
+             nil, nil, nil,
+             nil, nil, nil]
+    computer.assert_values(board).should eq(4)
   end
 
-  xit "should start game at known optimal positions" do
-    new_board = [nil, nil, nil,
-                 nil, nil, nil,
-                 nil, nil, nil]
-    computer.assert_values(new_board).should eq(0)
+  it "should take win when available" do
+    board = ["o", nil, "x",
+             nil, nil, "o",
+             "x", nil, nil]
+    computer.assert_values(board).should eq(4)
+  end
+
+  it "should start game at known optimal positions" do
+    board = [nil, nil, nil,
+             nil, nil, nil,
+             nil, nil, nil]
+    computer.assert_values(board).should eq(0)
   end
 
   # it "does something else"
@@ -87,7 +91,6 @@ describe ComputerAi do
     board = ["o", "x", "o",
              "x", "o", "x",
              "x", "o", "x"]
-
     computer.create_value(board).should eq(0)
   end
 
@@ -105,4 +108,10 @@ describe ComputerAi do
     computer.create_value(board).should eq(1)
   end
 
+  it "returns correct value of last position winning move" do
+    board = ["o", "x", "o",
+             "x", "x", "x",
+             "o", "o", "x"]
+    computer.create_value(board).should eq(1)
+  end
 end

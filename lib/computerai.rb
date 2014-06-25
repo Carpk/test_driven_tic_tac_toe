@@ -10,33 +10,33 @@ class ComputerAi
     position_values = []
     board.each_with_index do |empty_position, empty_index|
       next if empty_position != nil
-      possible_game = board.dup
-      possible_game[empty_index] = @game_piece
-      puts "#{possible_game}"
-      position_values[empty_index] = evaluate_board(possible_game, @enemy_piece, @game_piece)
+      possible_board = board.dup
+      possible_board[empty_index] = @game_piece
+      position_values[empty_index] = evaluate_board(possible_board, @enemy_piece, @game_piece)
     end
-    # puts "#{position_values}"
+    puts
+    puts "board: #{board}, values: #{position_values}"             # REMOVE
     position_values.index(position_values.compact.max)
   end
 
-  def evaluate_board(board, current, passing)
-    return create_value(board) if gameover?(board)
+  def evaluate_board(board, current_player, passing_player, depth=0)
+    return (create_value(board) + depth) if gameover?(board)
     board_values = []
     board.each_with_index do |empty_position, empty_index|
       next if empty_position != nil
       played_board = board.dup
-      played_board[empty_index] = current
-      board_values[empty_index] = evaluate_board(played_board, passing, current)
+      played_board[empty_index] = current_player
+      board_values[empty_index] = evaluate_board(played_board, passing_player, current_player, depth -1)
     end
-    puts "board values: #{board_values}"
-    if current == @game_piece
+
+    if current_player == @game_piece
       best_value = board_values.compact.max
-      @new_position = board_values.index(best_value)
-      return best_value
+      # @new_position = board_values.index(best_value)
+      best_value
     else
       best_value = board_values.compact.min
-      @new_position = board_values.index(best_value)
-      return best_value
+      # @new_position = board_values.index(best_value) # new_position?
+      best_value
     end
   end
 
@@ -46,9 +46,8 @@ class ComputerAi
   end
 
   def create_value(board)
-    @game.set_board_values(board)
-    return  1 if @game.who_won? == @game_piece
-    return -1 if @game.who_won? == @enemy_piece
+    return  1 if @game.who_won?(board) == @game_piece
+    return -1 if @game.who_won?(board) == @enemy_piece
     return  0 if @game.tie_game?
   end
 

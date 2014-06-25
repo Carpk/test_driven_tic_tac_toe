@@ -5,14 +5,15 @@ class GamePlay
   end
 
   def create_players(params)
-    player1 = Player.new(params[:player1]) # pass true if player is AI
+    player1 = Player.new(params[:player1])
     player2 = Player.new(params[:player2])
-    @players = {p1: {next: :p2, player: player1}, p2: {next: :p1, player: player2}}
+    @players = {p1: {next: :p2, player: player1},
+                p2: {next: :p1, player: player2}}
     @current_player = @players[:p1]
   end
 
   def gameover?
-    @board.board_full? || game_winner?
+    game_winner? || @board.board_full?
   end
 
   def game_winner?
@@ -25,8 +26,6 @@ class GamePlay
 
   def player_move_to(position)
     token = @current_player[:player].game_piece
-    puts @current_player[:player].ai\
-    # position = computer_turn if @current_player[:player].ai == true
     @board.assign_token_to(token, position)
     @current_player = @players[@current_player[:next]]
   end
@@ -40,7 +39,8 @@ class GamePlay
     @board.grid
   end
 
-  def who_won?
+  def who_won?(new_board)
+    set_board_values(new_board)
     gameover?
     @board.winner_value
   end
