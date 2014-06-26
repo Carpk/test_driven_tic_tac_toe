@@ -15,18 +15,20 @@ class ComputerAi
       position_values[empty_index] = evaluate_board(possible_board, @enemy_piece, @game_piece)
     end
     puts
-    puts "board: #{board}, values: #{position_values}"             # REMOVE
+    puts @game_piece
+    puts "board: #{board}"
+    puts "values: #{position_values}"             # REMOVE
     position_values.index(position_values.compact.max)
   end
 
-  def evaluate_board(board, current_player, passing_player, depth=0)
-    return (create_value(board) + depth) if gameover?(board)
+  def evaluate_board(board, current_player, passing_player, depth=1)
+    return create_value(board) / depth if gameover?(board)
     board_values = []
     board.each_with_index do |empty_position, empty_index|
       next if empty_position != nil
       played_board = board.dup
       played_board[empty_index] = current_player
-      board_values[empty_index] = evaluate_board(played_board, passing_player, current_player, depth -1)
+      board_values[empty_index] = evaluate_board(played_board, passing_player, current_player, depth +1)
     end
 
     if current_player == @game_piece
@@ -46,9 +48,9 @@ class ComputerAi
   end
 
   def create_value(board)
-    return  1 if @game.who_won?(board) == @game_piece
-    return -1 if @game.who_won?(board) == @enemy_piece
-    return  0 if @game.tie_game?
+    return  1.0 if @game.who_won?(board) == @game_piece
+    return -1.0 if @game.who_won?(board) == @enemy_piece
+    return  0.0 if @game.tie_game?
   end
 
 end
