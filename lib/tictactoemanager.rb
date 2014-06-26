@@ -44,6 +44,7 @@ class TicTacToeManager
 
   def player_option
     if @game.current_player[:player].computer_active
+      sleep(0.25)
       @game.computer_turn
     else
       valid_player_move

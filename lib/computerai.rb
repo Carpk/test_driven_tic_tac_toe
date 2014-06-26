@@ -1,8 +1,8 @@
 class ComputerAi
 
-  def initialize(game_piece, opponent)
-    @game_piece = game_piece
-    @enemy_piece = opponent
+  def initialize(params)
+    @game_piece = params[:symbol]
+    @enemy_piece = params[:opponent]
     @game = GamePlay.new
   end
 
@@ -14,31 +14,39 @@ class ComputerAi
       possible_board[empty_index] = @game_piece
       position_values[empty_index] = evaluate_board(possible_board, @enemy_piece, @game_piece)
     end
-    puts
-    puts @game_piece
-    puts "board: #{board}"
-    puts "values: #{position_values}"             # REMOVE
-    position_values.index(position_values.compact.max)
+
+    puts                                          # REMOVE AFTER TESTING
+    puts @game_piece                              # REMOVE AFTER TESTING
+    puts "board: #{board}"                        # REMOVE AFTER TESTING
+    puts "values: #{position_values}"             # REMOVE AFTER TESTING
+
+    random_position(position_values)
+  end
+
+  def random_position(position_values)
+    optimal_indexes = []
+    max_value = position_values.compact.max
+    position_values.each_with_index do |val, indx|
+      optimal_indexes << indx if val == max_value
+    end
+    puts "optimal indexes: #{optimal_indexes}"         # REMOVE AFTER TESTING
+    optimal_indexes.sample
   end
 
   def evaluate_board(board, current_player, passing_player, depth=1)
-    return create_value(board) / depth if gameover?(board)
+    return create_value(board) / depth if gameover?(board) || depth > 6
     board_values = []
     board.each_with_index do |empty_position, empty_index|
       next if empty_position != nil
       played_board = board.dup
       played_board[empty_index] = current_player
-      board_values[empty_index] = evaluate_board(played_board, passing_player, current_player, depth +1)
+      board_values << evaluate_board(played_board, passing_player, current_player, depth +1)
     end
 
     if current_player == @game_piece
-      best_value = board_values.compact.max
-      # @new_position = board_values.index(best_value)
-      best_value
+      board_values.compact.max
     else
-      best_value = board_values.compact.min
-      # @new_position = board_values.index(best_value) # new_position?
-      best_value
+      board_values.compact.min
     end
   end
 
@@ -50,7 +58,8 @@ class ComputerAi
   def create_value(board)
     return  1.0 if @game.who_won?(board) == @game_piece
     return -1.0 if @game.who_won?(board) == @enemy_piece
-    return  0.0 if @game.tie_game?
+    return  0.0 if @game.tie_game?(board)
+    1.0 / 0
   end
 
 end

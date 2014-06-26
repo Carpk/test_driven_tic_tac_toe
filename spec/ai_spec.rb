@@ -4,18 +4,23 @@ require 'rspec'
 
 describe ComputerAi do
 
-  let(:computer)  {ComputerAi.new("x", "o")}
+  let(:computer)  {ComputerAi.new({symbol: "x", opponent: "o"})}
   let(:game)      {GamePlay.new}
 
 
-  # it "should determine the next position to move to" do
-  #   new_board = ["x", "x", nil,
-  #                "o", nil, "o",
-  #                nil, "o", nil]
-  #   game.set_board_values(new_board)
-  #   computer.evaluate_board(game)#.should eq(2)
-  #   computer.new_position.should eq(2)
-  # end
+  it "should take win instead of block" do
+    board = ["x", "x", nil,
+             "o", nil, "o",
+             nil, nil, nil]
+    computer.assert_values(board).should eq(2)
+  end
+
+  it "should take win instead of block as last move" do
+    board = ["x", "x", nil,
+             "o", "o", "x",
+             nil, "o", "o"]
+    computer.assert_values(board).should eq(2)
+  end
 
   it "takes only spot on board" do
     board = ["o", "x", "o",
@@ -31,7 +36,7 @@ describe ComputerAi do
     computer.assert_values(board).should eq(4)
   end
 
-  xit "should take optimal position" do
+  it "should take middle position for next optimal move" do
     board = [nil, nil, "o",
              nil, nil, nil,
              nil, nil, nil]
@@ -49,12 +54,9 @@ describe ComputerAi do
     board = [nil, nil, nil,
              nil, nil, nil,
              nil, nil, nil]
-    computer.assert_values(board).should eq(0)
+    computer.assert_values(board).should eq(0) # 0,2,6,8
   end
 
-  # it "does something else"
-
-  # it "does another thing"
 
   # it "should create a value based on board win" do
   #   game.set_board_values(["x", "x", "x", "o", nil, "o", nil, nil, nil])
@@ -113,5 +115,12 @@ describe ComputerAi do
              "x", "x", "x",
              "o", "o", "x"]
     computer.create_value(board).should eq(1)
+  end
+
+  it "returns infinity value when board is incomplete" do
+    board = ["o", "x", "o",
+             nil, "x", "x",
+             "o", "o", "x"]
+    computer.create_value(board).should eq(50)
   end
 end

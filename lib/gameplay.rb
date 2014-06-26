@@ -45,7 +45,8 @@ class GamePlay
     @board.winner_value
   end
 
-  def tie_game?
+  def tie_game?(new_board)
+    set_board_values(new_board)
     @board.board_full? && game_winner? == false
   end
 end

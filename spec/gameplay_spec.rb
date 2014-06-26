@@ -103,27 +103,24 @@ describe GamePlay do
   end
 
   it "should know the game is a tie" do
-    new_board = ["o", "x", "o",
-                 "x", "o", "x",
-                 "x", "o", "x"]
-    game.set_board_values(new_board)
-    game.tie_game?.should eq(true)
+    board = ["o", "x", "o",
+             "x", "o", "x",
+             "x", "o", "x"]
+    game.tie_game?(board).should eq(true)
   end
 
   it "should know there is no tie with winner" do
-    new_board = ["o", "x", "o",
-                 "x", "x", "x",
-                 "o", "o", "x"]
-    game.set_board_values(new_board)
-    game.tie_game?.should eq(false)
+    board = ["o", "x", "o",
+             "x", "x", "x",
+             "o", "o", "x"]
+    game.tie_game?(board).should eq(false)
   end
 
   it "should know there is no tie with incomplete game" do
     board = ["o", "x", "o",
              "x", nil, "x",
              "o", "o", "x"]
-    game.set_board_values(board)
-    game.tie_game?.should eq(false)
+    game.tie_game?(board).should eq(false)
   end
 
   it "should get a response from the ai" do

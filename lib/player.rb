@@ -4,7 +4,7 @@ class Player
   def initialize(params)
     @game_piece = params[:symbol]
     @computer_active = check_for_ai(params[:ai])
-    @ai = ComputerAi.new(@game_piece, params[:opponent])
+    @ai = ComputerAi.new(params)
   end
 
   # def create_ai(enemy)
