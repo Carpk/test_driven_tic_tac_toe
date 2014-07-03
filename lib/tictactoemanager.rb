@@ -2,7 +2,6 @@ class TicTacToeManager
 
   def initialize
     @view = DisplayUtility.new
-    @validator = InputValidator.new
     @game = GamePlay.new
   end
 
@@ -15,7 +14,7 @@ class TicTacToeManager
 
   def valid_players_hash
     players_hash = create_players_hash
-    until @validator.valid_hash?(players_hash)
+    until InputValidator.valid_hash?(players_hash)
       @view.invalid_input_error
       players_hash = create_players_hash
     end
@@ -44,7 +43,7 @@ class TicTacToeManager
 
   def player_option
     if @game.current_player[:player].computer_active
-      sleep(0.5)                                         # REMOVE
+      sleep(0.5)                            # REMOVE SLEEP AFTER TESTING
       @game.computer_turn
     else
       valid_player_move
@@ -54,7 +53,7 @@ class TicTacToeManager
   def valid_player_move
     player = @game.current_player[:player].game_piece
     new_position = @view.prompt_player_move(player).to_i
-    until @validator.valid_move?(@game.display_board, new_position)
+    until InputValidator.valid_move?(@game.display_board, new_position)
       @view.invalid_input_error
       new_position = @view.prompt_player_move(player).to_i
     end

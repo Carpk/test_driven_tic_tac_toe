@@ -148,4 +148,38 @@ describe TicTacToeBoard do
     board.winner_value.should eq("o")
   end
 
+  it "should check if given group is matching" do
+    group = ["o","o","o"]
+    board.group_check(group).should eq(true)
+  end
+
+  it "should return false if given group is not matching" do
+    group = ["x","o","o"]
+    board.group_check(group).should eq(nil)
+  end
+
+  it "should return false if given group is not matching" do
+    group = ["o","x","o"]
+    board.group_check(group).should eq(nil)
+  end
+
+  it "should return false if given group is not matching" do
+    group = ["o","o","x"]
+    board.group_check(group).should eq(nil)
+  end
+
+  it "should return false if given group is not matching" do
+    group = ["o","o",nil]
+    board.group_check(group).should eq(nil)
+  end
+
+  it "should return false if given group is not matching" do
+    group = ["o",nil,"o"]
+    board.group_check(group).should eq(nil)
+  end
+
+  it "should return false if given group is not matching" do
+    group = [nil, nil, nil]
+    board.group_check(group).should eq(nil)
+  end
 end

@@ -4,12 +4,8 @@ class Player
   def initialize(params)
     @game_piece = params[:symbol]
     @computer_active = check_for_ai(params[:ai])
-    @ai = ComputerAi.new(params)
+    @ai = ComputerAi.new(params) # this does not need to be an ivar
   end
-
-  # def create_ai(enemy)
-  #   @ai = ComputerAi.new(@game_piece, enemy)
-  # end
 
   def check_for_ai(ai_switch)
     ai_switch[0].downcase == "y"

@@ -17,7 +17,10 @@ class GamePlay
   end
 
   def game_winner?
-    @board.matching_rows? || @board.matching_columns? || @board.matching_forwardslash? || @board.matching_backslash?
+    @board.matching_rows?         ||
+    @board.matching_columns?      ||
+    @board.matching_forwardslash? ||
+    @board.matching_backslash?
   end
 
   def set_board_values(new_board)

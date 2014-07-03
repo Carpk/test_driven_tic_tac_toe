@@ -36,9 +36,16 @@ describe ComputerAi do
     computer.assert_values(board).should eq(4)
   end
 
-  it "should take middle position for next optimal move" do
+  it "should take middle position to counter corner move" do
     board = [nil, nil, "o",
              nil, nil, nil,
+             nil, nil, nil]
+    computer.assert_values(board).should eq(4)
+  end
+
+  it "should take middle position to counter middle perimeter move" do
+    board = [nil, nil, nil,
+             nil, nil, "o",
              nil, nil, nil]
     computer.assert_values(board).should eq(4)
   end
@@ -50,23 +57,12 @@ describe ComputerAi do
     computer.assert_values(board).should eq(4)
   end
 
-  it "should start game at known optimal positions" do
+  xit "should start game at known optimal positions" do     # PENDING
     board = [nil, nil, nil,
              nil, nil, nil,
              nil, nil, nil]
-    computer.assert_values(board).should eq(0) # 0,2,6,8
+    computer.assert_values(board).should eq(0)
   end
-
-
-  # it "should create a value based on board win" do
-  #   game.set_board_values(["x", "x", "x", "o", nil, "o", nil, nil, nil])
-  #   computer.create_value(board).should eq(10)
-  # end
-
-  # it "should determine if board is complete" do
-  #   board.grid = ["x", "x", nil, "o", nil, "o", nil, nil, nil]
-  #   computer.board_complete?(board).should eq(false)
-  # end
 
   it "should return true if game is over with full board" do
     board = ["o", "x", "o",
@@ -75,7 +71,7 @@ describe ComputerAi do
     computer.gameover?(board).should eq(true)
   end
 
-  it "should return true if game is over with column win" do
+  it "should return true if game is over with diagonal win" do
     board = ["o", "x", "o",
              "x", "o", "x",
              nil, nil, "o"]
@@ -117,10 +113,10 @@ describe ComputerAi do
     computer.create_value(board).should eq(1)
   end
 
-  it "returns infinity value when board is incomplete" do
+  it "returns zero value when board is incomplete" do
     board = ["o", "x", "o",
              nil, "x", "x",
              "o", "o", "x"]
-    computer.create_value(board).should eq(50)
+    computer.create_value(board).should eq(0)
   end
 end

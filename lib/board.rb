@@ -23,31 +23,27 @@ class TicTacToeBoard
   end
 
   def matching_rows?
+    match_value = false
     @grid.each_slice(square_root_of_board) do |win_attempt|
-      if win_attempt.compact == win_attempt.rotate
-        @winner_value = win_attempt.first
-        return true
-      end
+      match_value = true if group_check(win_attempt) == true
     end
-    false
+    match_value
   end
 
   def matching_columns?
+    match_value = false
     board_divisor = square_root_of_board
     board_divisor.times do |index|
       win_attempt = [@grid[index], @grid[index + board_divisor], @grid[index + board_divisor * 2]]
-      if win_attempt.compact == win_attempt.rotate
-        @winner_value = win_attempt.first
-        return true
-      end
+      match_value = true if group_check(win_attempt) == true
     end
-    false
+    match_value
   end
 
-  # rid of explict returns
   # fix method names
 
   def matching_forwardslash?
+    match_value = false
     index_offset = 0
     forwardslash = []
     @grid.each_slice(square_root_of_board) do |win_attempt|
@@ -55,15 +51,13 @@ class TicTacToeBoard
       index_offset += 1
     end
 
-    if forwardslash.compact == forwardslash.rotate
-      @winner_value = forwardslash.first
-      true
-    else
-      false
-    end
+    match_value = true if group_check(forwardslash) == true
+
+    match_value
   end
 
   def matching_backslash?
+    match_value = false
     index_offset = 0
     backslash = []
     @grid.each_slice(square_root_of_board) do |win_attempt|
@@ -71,11 +65,15 @@ class TicTacToeBoard
       index_offset += 1
     end
 
-    if backslash.compact == backslash.rotate
-      @winner_value = backslash.first
+    match_value = true if group_check(backslash) == true
+
+    match_value
+  end
+
+  def group_check(group)
+    if group.compact == group.rotate
+      @winner_value = group.first
       true
-    else
-      false
     end
   end
 
