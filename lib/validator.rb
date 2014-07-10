@@ -1,6 +1,6 @@
 class InputValidator
 
-  def self.valid_hash?(players_hash) # CREATE SINGLETON METHODS
+  def self.valid_hash?(players_hash)
     valid = true
     valid = false if players_hash[:player1][:symbol] == players_hash[:player2][:symbol]
 
@@ -13,7 +13,7 @@ class InputValidator
     valid
   end
 
-  def self.valid_move?(board, position) # CREATE SINGLETON METHODS
+  def self.valid_move?(board, position)
     return false if position.class == String || board[position - 1] != nil
     (1..9).to_a.include?(position)
   end

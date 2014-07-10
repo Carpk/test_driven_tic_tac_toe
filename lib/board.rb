@@ -1,9 +1,9 @@
 class TicTacToeBoard
   attr_accessor :grid, :winner_value
 
-  def initialize
-    @grid = Array.new(9)
-    @winner_value = false
+  def initialize                          #fix method names
+    @grid = Array.new(9)                  #should not use nil for blank spacing
+    @winner_value = false # find another way to do this, this violates the D
   end
 
   def unassigned_positions?
@@ -18,13 +18,13 @@ class TicTacToeBoard
     @grid[position] = token
   end
 
-  def square_root_of_board
+  def board_side_length
     Math.sqrt(@grid.length).to_i
   end
 
   def matching_rows?
     match_value = false
-    @grid.each_slice(square_root_of_board) do |win_attempt|
+    @grid.each_slice(board_side_length) do |win_attempt|
       match_value = true if group_check(win_attempt) == true
     end
     match_value
@@ -32,7 +32,7 @@ class TicTacToeBoard
 
   def matching_columns?
     match_value = false
-    board_divisor = square_root_of_board
+    board_divisor = board_side_length
     board_divisor.times do |index|
       win_attempt = [@grid[index], @grid[index + board_divisor], @grid[index + board_divisor * 2]]
       match_value = true if group_check(win_attempt) == true
@@ -40,13 +40,11 @@ class TicTacToeBoard
     match_value
   end
 
-  # fix method names
-
   def matching_forwardslash?
     match_value = false
     index_offset = 0
     forwardslash = []
-    @grid.each_slice(square_root_of_board) do |win_attempt|
+    @grid.each_slice(board_side_length) do |win_attempt|
       forwardslash << win_attempt[-1 - index_offset]
       index_offset += 1
     end
@@ -60,7 +58,7 @@ class TicTacToeBoard
     match_value = false
     index_offset = 0
     backslash = []
-    @grid.each_slice(square_root_of_board) do |win_attempt|
+    @grid.each_slice(board_side_length) do |win_attempt|
       backslash << win_attempt[0 + index_offset]
       index_offset += 1
     end

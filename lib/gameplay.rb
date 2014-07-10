@@ -1,5 +1,6 @@
 class GamePlay
   attr_reader :current_player
+
   def initialize
     @board = TicTacToeBoard.new
   end

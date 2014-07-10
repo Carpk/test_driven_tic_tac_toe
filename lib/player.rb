@@ -4,7 +4,7 @@ class Player
   def initialize(params)
     @game_piece = params[:symbol]
     @computer_active = check_for_ai(params[:ai])
-    @ai = ComputerAi.new(params) # this does not need to be an ivar
+    @ai = ComputerAi.new(params)                 # this does not need to be an ivar
   end
 
   def check_for_ai(ai_switch)

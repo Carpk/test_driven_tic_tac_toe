@@ -2,8 +2,7 @@ class ComputerAi
 
   def initialize(params)
     @game_piece = params[:symbol]
-    @enemy_piece = params[:opponent]
-    @game = GamePlay.new
+    @enemy_piece = params[:opponent]        # make into a single hash object?
   end
 
   def assert_values(board)
@@ -29,7 +28,7 @@ class ComputerAi
     position_values.each_with_index do |position_value, board_position|
       optimal_indexes << board_position if position_value == max_value
     end
-    # puts "optimal indexes: #{optimal_indexes}"         # REMOVE AFTER TESTING
+    # puts "optimal indexes: #{optimal_indexes}"                      # REMOVE AFTER TESTING
     optimal_indexes.sample
   end
 
@@ -51,15 +50,17 @@ class ComputerAi
   end
 
   def gameover?(board)
-    @game.set_board_values(board)
-    @game.gameover?
+    game = GamePlay.new
+    game.set_board_values(board)
+    game.gameover?
   end
 
   def create_value(board)
+    game = GamePlay.new
     returning_value =  0
-    returning_value =  1.0 if @game.who_won?(board) == @game_piece
-    returning_value = -1.0 if @game.who_won?(board) == @enemy_piece
-    returning_value =  0.0 if @game.tie_game?(board)
+    returning_value =  1.0 if game.who_won?(board) == @game_piece
+    returning_value = -1.0 if game.who_won?(board) == @enemy_piece
+    returning_value =  0.0 if game.tie_game?(board)
     returning_value
   end
 

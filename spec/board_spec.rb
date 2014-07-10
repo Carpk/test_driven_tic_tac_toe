@@ -59,7 +59,7 @@ describe TicTacToeBoard do
   end
 
   it "should return the square root for board of 9" do
-    board.square_root_of_board.should eq(3)
+    board.board_side_length.should eq(3)
   end
 
   it "should return the square root for board of 12" do
@@ -67,7 +67,7 @@ describe TicTacToeBoard do
                   "x", "o", "x", nil,
                   "x", "o", "x", nil,
                   nil, nil, nil, nil]
-    board.square_root_of_board.should eq(4)
+    board.board_side_length.should eq(4)
   end
 
   it "should return fasle if row set has not won" do
