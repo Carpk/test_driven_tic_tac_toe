@@ -70,6 +70,34 @@ describe TicTacToeBoard do
     board.board_side_length.should eq(4)
   end
 
+  it "should return the index positions of availible board positions" do
+    board.grid = ['f','f','f',
+                  "g"," "," ",
+                  " ","g"," "]
+    board.indexes_of_available_spaces.should eq([4,5,6,8])
+  end
+
+  it "should return index positions of availible board positions" do
+    board.grid = ["f"," ","f",
+                  "g"," ","f",
+                  " ","g","f"]
+    board.indexes_of_available_spaces.should eq([1,4,6])
+  end
+
+  it "should return empty array with full board" do
+    board.grid = ["f","g","f",
+                  "g","g","f",
+                  "f","g","f"]
+    board.indexes_of_available_spaces.should eq([])
+  end
+
+  it "should return all positions with empty board" do
+    board.grid = [" "," "," ",
+                  " "," "," ",
+                  " "," "," "]
+    board.indexes_of_available_spaces.should eq([0,1,2,3,4,5,6,7,8])
+  end
+
   it "should return fasle if row set has not won" do
     board.matching_rows?.should eq(false)
   end

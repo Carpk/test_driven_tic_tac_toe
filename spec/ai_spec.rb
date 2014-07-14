@@ -9,114 +9,129 @@ describe ComputerAi do
 
 
   it "should take win instead of block" do
-    board = ["x", "x", " ",
-             "o", " ", "o",
-             " ", " ", " "]
+    grid = ["x", "x", " ",
+            "o", " ", "o",
+            " ", " ", " "]
+    board = TicTacToeBoard.new(grid)
     computer.assert_values(board).should eq(2)
   end
 
   it "should take win instead of block as last move" do
-    board = ["x", "x", " ",
-             "o", "o", "x",
-             " ", "o", "o"]
+    grid = ["x", "x", " ",
+            "o", "o", "x",
+            " ", "o", "o"]
+    board = TicTacToeBoard.new(grid)
     computer.assert_values(board).should eq(2)
   end
 
   it "takes only spot on board" do
-    board = ["o", "x", "o",
-             "x", " ", "x",
-             "o", "o", "x"]
+    grid = ["o", "x", "o",
+            "x", " ", "x",
+            "o", "o", "x"]
+    board = TicTacToeBoard.new(grid)
     computer.assert_values(board).should eq(4)
   end
 
   it "should block player from win" do
-    board = ["o", "x", " ",
-             "o", " ", "o",
-             "x", " ", " "]
+    grid = ["o", "x", " ",
+            "o", " ", "o",
+            "x", " ", " "]
+    board = TicTacToeBoard.new(grid)
     computer.assert_values(board).should eq(4)
   end
 
   it "should take middle position to counter corner move" do
-    board = [" ", " ", "o",
-             " ", " ", " ",
-             " ", " ", " "]
+    grid = [" ", " ", "o",
+            " ", " ", " ",
+            " ", " ", " "]
+    board = TicTacToeBoard.new(grid)
     computer.assert_values(board).should eq(4)
   end
 
-  # it "should take middle position to counter middle perimeter move" do
+  # it "should take midgridosition to counter middle perimeter move" do
   #   board = [" ", " ", " ",
-  #            " ", " ", "o",
-  #            " ", " ", " "]
-  #   computer.assert_values(board).should eq(4)
+#            " ", " ", "o",
+ #            " ", " "board = TicTacToeBoard.new(grid)
+  #   computer.assert_values(board).should eq(4) # 2,3,4,8
   # end
 
   it "should take win when available" do
-    board = ["o", " ", "x",
-             " ", " ", "o",
-             "x", " ", " "]
+    grid = ["o", " ", "x",
+            " ", " ", "o",
+            "x", " ", " "]
+    board = TicTacToeBoard.new(grid)
     computer.assert_values(board).should eq(4)
   end
 
   xit "should start game at known optimal positions" do     # PENDING
-    board = [" ", " ", " ",
-             " ", " ", " ",
-             " ", " ", " "]
+    grid = [" ", " ", " ",
+            " ", " ", " ",
+            " ", " ", " "]
+    board = TicTacToeBoard.new(grid)
     computer.assert_values(board).should eq(0)
   end
 
   it "should return true if game is over with full board" do
-    board = ["o", "x", "o",
-             "x", "o", "x",
-             "x", "o", "x"]
+    grid = ["o", "x", "o",
+            "x", "o", "x",
+            "x", "o", "x"]
+    board = TicTacToeBoard.new(grid)
     computer.gameover?(board).should eq(true)
   end
 
   it "should return true if game is over with diagonal win" do
-    board = ["o", "x", "o",
-             "x", "o", "x",
-             " ", " ", "o"]
+    grid = ["o", "x", "o",
+            "x", "o", "x",
+            " ", " ", "o"]
+    board = TicTacToeBoard.new(grid)
     computer.gameover?(board).should eq(true)
   end
 
   it "should return false if game is not over" do
-    board = ["x", "x", "o",
-             "x", "o", "x",
-             " ", " ", "o"]
+    grid = ["x", "x", "o",
+            "x", "o", "x",
+            " ", " ", "o"]
+    board = TicTacToeBoard.new(grid)
     computer.gameover?(board).should eq(false)
   end
 
   it "should return a 0 value based on tie game" do
-    board = ["o", "x", "o",
-             "x", "o", "x",
-             "x", "o", "x"]
+    grid = ["o", "x", "o",
+            "x", "o", "x",
+            "x", "o", "x"]
+    board = TicTacToeBoard.new(grid)
     computer.create_value(board).should eq(0)
   end
 
   it "should create a negitve value based on board lose" do
-    board = ["o", "o", "o",
-             "x", " ", "x",
-             " ", " ", " "]
+    grid = ["o", "o", "o",
+            "x", " ", "x",
+            " ", " ", " "]
+    board = TicTacToeBoard.new(grid)
     computer.create_value(board).should eq(-1)
   end
 
   it "should create a positive value based on board win" do
-    board = ["x", " ", " ",
-             "o", "x", "o",
-             " ", " ", "x"]
+    grid = ["x", " ", " ",
+            "o", "x", "o",
+            " ", " ", "x"]
+    board = TicTacToeBoard.new(grid)
     computer.create_value(board).should eq(1)
   end
 
   it "returns correct value of last position winning move" do
-    board = ["o", "x", "o",
-             "x", "x", "x",
-             "o", "o", "x"]
+    grid = ["o", "x", "o",
+            "x", "x", "x",
+            "o", "o", "x"]
+    board = TicTacToeBoard.new(grid)
     computer.create_value(board).should eq(1)
   end
 
   it "returns zero value when board is incomplete" do
-    board = ["o", "x", "o",
-             " ", "x", "x",
-             "o", "o", "x"]
+    grid = ["o", "x", "o",
+            " ", "x", "x",
+            "o", "o", "x"]
+    board = TicTacToeBoard.new(grid)
     computer.create_value(board).should eq(0)
   end
 end

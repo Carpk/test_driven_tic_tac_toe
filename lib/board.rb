@@ -22,14 +22,13 @@ class TicTacToeBoard
     Math.sqrt(@grid.length).to_i
   end
 
-  def indexes_of_availible_spaces
-
+  def indexes_of_available_spaces
+    available_indexes = []
+    @grid.each_with_index do |value, index|
+      available_indexes << index if value == " "
+    end
+    available_indexes
   end
-
-  def show_space_value_at(index)
-
-  end
-
 
   def matching_rows?
     match_value = false

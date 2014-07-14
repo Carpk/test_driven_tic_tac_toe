@@ -14,16 +14,11 @@ class GamePlay
   end
 
   def gameover?
-    # board = @board.grid
-    # GameValues.gameover?(board)
-    game_winner? || @board.board_full?
+    GameValues.gameover?(@board.grid)
   end
 
   def game_winner?
-    @board.matching_rows?         ||
-    @board.matching_columns?      ||
-    @board.matching_forwardslash? ||
-    @board.matching_backslash?
+    GameValues.board_has_winner?(@board.grid)
   end
 
   def set_board_values(new_board)
@@ -37,7 +32,7 @@ class GamePlay
   end
 
   def computer_turn
-    board = @board.grid
+    board = @board.clone
     @current_player[:player].game_to_ai(board)
   end
 
@@ -45,14 +40,13 @@ class GamePlay
     @board.grid
   end
 
-  def who_won?(new_board)
-    set_board_values(new_board)
-    gameover?
-    @board.winner_value
+  def who_won?(board_array)
+    board = TicTacToeBoard.new(board_array)
+    GameValues.winner_of(board)
   end
 
-  def tie_game?(new_board)
-    set_board_values(new_board)
-    @board.board_full? && game_winner? == false
+  def tie_game?(board_array)
+    board = TicTacToeBoard.new(board_array)
+    GameValues.tie_game?(board)
   end
 end
