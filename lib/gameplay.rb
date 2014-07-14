@@ -14,11 +14,11 @@ class GamePlay
   end
 
   def gameover?
-    GameValues.gameover?(@board.grid)
+    GameValues.gameover?(@board)
   end
 
   def game_winner?
-    GameValues.board_has_winner?(@board.grid)
+    GameValues.board_has_winner?(@board)
   end
 
   def set_board_values(new_board)
