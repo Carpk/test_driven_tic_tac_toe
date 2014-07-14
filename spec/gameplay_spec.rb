@@ -18,9 +18,9 @@ describe GamePlay do
   end
 
   it "should know if game is over" do
-    board = [nil, "o", nil,
-             nil, "o", nil,
-             nil, "o", nil]
+    board = [" ", "o", " ",
+             " ", "o", " ",
+             " ", "o", " "]
     game.set_board_values(board)
     game.gameover?.should eq(true)
   end
@@ -34,7 +34,7 @@ describe GamePlay do
   end
 
   it "should know if game is not over" do
-    board = [nil, "o", "x",
+    board = [" ", "o", "x",
              "o", "x", "o",
              "o", "x", "o"]
     game.set_board_values(board)
@@ -42,17 +42,17 @@ describe GamePlay do
   end
 
   it "should know if game has a no winner" do
-    board = [nil, nil, "x",
-             nil, "o", nil,
-             nil, nil, "o"]
+    board = [" ", " ", "x",
+             " ", "o", " ",
+             " ", " ", "o"]
     game.set_board_values(board)
     game.game_winner?.should eq(false)
   end
 
   # it "should know if game has a forwardslash winner" do
-  #   board = ["o", nil, "x",
-  #            nil, "o", nil,
-  #            nil, nil, "o"]
+  #   board = ["o", " ", "x",
+  #            " ", "o", " ",
+  #            " ", " ", "o"]
   #   game.set_board_values(board)
   #   game.game_winner?.should eq(true)
   # end
@@ -74,9 +74,9 @@ describe GamePlay do
   end
 
   it "should correctly set board values" do
-    board = [nil, nil, nil,
-             nil, "o", nil,
-             nil, nil, nil]
+    board = [" ", " ", " ",
+             " ", "o", " ",
+             " ", " ", " "]
     game.set_board_values(board)
     game.display_board[4].should eq("o")
   end
@@ -90,15 +90,15 @@ describe GamePlay do
 
   it "should return who won the game" do
     board = ["x", "x", "x",
-             nil, "o", nil,
-             nil, nil, nil]
+             " ", "o", " ",
+             " ", " ", " "]
     game.who_won?(board).should eq("x")
   end
 
   it "should return who won the game" do
     board = ["x", "o", "x",
-             nil, "o", nil,
-             nil, "o", nil]
+             " ", "o", " ",
+             " ", "o", " "]
     game.who_won?(board).should eq("o")
   end
 
@@ -118,14 +118,14 @@ describe GamePlay do
 
   it "should know there is no tie with incomplete game" do
     board = ["o", "x", "o",
-             "x", nil, "x",
+             "x", " ", "x",
              "o", "o", "x"]
     game.tie_game?(board).should eq(false)
   end
 
   it "should get a response from the ai" do
     board = ["o", "x", "o",
-             "x", nil, "x",
+             "x", " ", "x",
              "o", "o", "x"]
     hash = {player1: {symbol: "x", ai: "y"}, player2: {symbol: "o", ai: "n"}}
     game.create_players(hash)

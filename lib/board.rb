@@ -1,13 +1,13 @@
 class TicTacToeBoard
   attr_accessor :grid, :winner_value
 
-  def initialize                          #fix method names
-    @grid = Array.new(9)                  #should not use nil for blank spacing
-    @winner_value = false # find another way to do this, this violates the D
+  def initialize(board = Array.new(9," ") )        #fix method names
+    @grid = board
+    @winner_value = false
   end
 
   def unassigned_positions?
-    @grid.include?(nil)
+    @grid.include?(" ")
   end
 
   def board_full?
@@ -22,10 +22,19 @@ class TicTacToeBoard
     Math.sqrt(@grid.length).to_i
   end
 
+  def indexes_of_availible_spaces
+
+  end
+
+  def show_space_value_at(index)
+
+  end
+
+
   def matching_rows?
     match_value = false
     @grid.each_slice(board_side_length) do |win_attempt|
-      match_value = true if group_check(win_attempt) == true
+      match_value = true if group_match?(win_attempt) == true
     end
     match_value
   end
@@ -35,7 +44,7 @@ class TicTacToeBoard
     board_divisor = board_side_length
     board_divisor.times do |index|
       win_attempt = [@grid[index], @grid[index + board_divisor], @grid[index + board_divisor * 2]]
-      match_value = true if group_check(win_attempt) == true
+      match_value = true if group_match?(win_attempt) == true
     end
     match_value
   end
@@ -48,9 +57,7 @@ class TicTacToeBoard
       forwardslash << win_attempt[-1 - index_offset]
       index_offset += 1
     end
-
-    match_value = true if group_check(forwardslash) == true
-
+    match_value = true if group_match?(forwardslash) == true
     match_value
   end
 
@@ -62,17 +69,63 @@ class TicTacToeBoard
       backslash << win_attempt[0 + index_offset]
       index_offset += 1
     end
-
-    match_value = true if group_check(backslash) == true
-
+    match_value = true if group_match?(backslash) == true
     match_value
   end
 
-  def group_check(group)
-    if group.compact == group.rotate
-      @winner_value = group.first
+  def group_match?(group)
+    if group.rotate == group.delete_if {|e| " " == e}
+      @winner_value = group.first  # get rid of this
       true
     end
+  end
+
+
+
+  def possible_wins
+    all_combos = []
+    all_combos.concat(row_sections)
+    all_combos.concat(column_sections)
+    all_combos.concat(forwardslash_section)
+    all_combos.concat(backslash_section)
+    all_combos
+  end
+
+  def row_sections
+    rows_values = []
+    @grid.each_slice(board_side_length) do |win_attempt|
+      rows_values << win_attempt
+    end
+    rows_values
+  end
+
+  def column_sections
+    column_values = []
+    board_divisor = board_side_length
+    board_divisor.times do |index|
+      column_values << [@grid[index], @grid[index + board_divisor], @grid[index + board_divisor * 2]]
+    end
+    column_values
+  end
+
+  def forwardslash_section
+    index_offset = 0
+    forwardslash = []
+    @grid.each_slice(board_side_length) do |row|
+      forwardslash << row[-1 - index_offset]
+      index_offset += 1
+    end
+    [forwardslash]
+  end
+
+  def backslash_section
+    index_offset = 0
+    backslash = []
+    @grid.each_slice(board_side_length) do |row|
+      backslash << row[0 + index_offset]
+      index_offset += 1
+    end
+    [backslash]
   end
 
 end

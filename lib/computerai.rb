@@ -8,7 +8,7 @@ class ComputerAi
   def assert_values(board)
     position_values = []
     board.each_with_index do |empty_position, empty_index|
-      next if empty_position != nil
+      next if empty_position != " "
       possible_board = board.dup
       possible_board[empty_index] = @game_piece
       position_values[empty_index] = evaluate_board(possible_board, @enemy_piece, @game_piece)
@@ -36,7 +36,7 @@ class ComputerAi
     return create_value(board) / depth if gameover?(board) || depth > 6  # tests pass with 6
     board_values = []
     board.each_with_index do |empty_position, empty_index|
-      next if empty_position != nil
+      next if empty_position != " "
       played_board = board.dup
       played_board[empty_index] = current_player
       board_values << evaluate_board(played_board, passing_player, current_player, depth +1)
@@ -50,17 +50,15 @@ class ComputerAi
   end
 
   def gameover?(board)
-    game = GamePlay.new
-    game.set_board_values(board)
-    game.gameover?
+    GameValues.gameover?(board)
   end
 
-  def create_value(board)
-    game = GamePlay.new
+  def create_value(board_array)
+
     returning_value =  0
-    returning_value =  1.0 if game.who_won?(board) == @game_piece
-    returning_value = -1.0 if game.who_won?(board) == @enemy_piece
-    returning_value =  0.0 if game.tie_game?(board)
+    returning_value =  1.0 if GameValues.winner_of(board_array) == @game_piece
+    returning_value = -1.0 if GameValues.winner_of(board_array) == @enemy_piece
+    returning_value =  0.0 if GameValues.tie_game?(board_array)
     returning_value
   end
 
