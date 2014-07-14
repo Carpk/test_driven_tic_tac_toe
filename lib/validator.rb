@@ -14,7 +14,7 @@ class InputValidator
   end
 
   def self.valid_move?(board, position)
-    return false if position.class == String || board[position - 1] != nil
+    return false if position.class == String || board[position - 1] != " "
     (1..9).to_a.include?(position)
   end
 

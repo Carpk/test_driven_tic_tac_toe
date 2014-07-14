@@ -43,7 +43,7 @@ class TicTacToeManager
 
   def player_option
     if @game.current_player[:player].computer_active
-      sleep(0.5)                            # REMOVE SLEEP AFTER TESTING
+      sleep(2)                            # REMOVE SLEEP AFTER TESTING
       @game.computer_turn
     else
       valid_player_move

@@ -13,11 +13,6 @@ class ComputerAi
       position_values[empty_position] = evaluate_board(possible_board, @enemy_piece, @game_piece)
     end
 
-    puts                                          # REMOVE AFTER TESTING
-    puts @game_piece                              # REMOVE AFTER TESTING
-    puts "board: #{board.grid}"                   # REMOVE AFTER TESTING
-    puts "values: #{position_values.map {|e| e.to_s[0,5].to_f}}" # REMOVE AFTER TESTING
-
     random_position(position_values)
   end
 
@@ -71,6 +66,12 @@ end
   #     possible_board[empty_index] = @game_piece
   #     position_values[empty_index] = evaluate_board(possible_board, @enemy_piece, @game_piece)
   #   end
+
+    # puts                                          # REMOVE AFTER TESTING
+    # puts @game_piece                              # REMOVE AFTER TESTING
+    # puts "board: #{board.grid}"                   # REMOVE AFTER TESTING
+    # puts "values: #{position_values.map {|e| e.to_s[0,5].to_f}}" # REMOVE AFTER TESTING
+
   #   random_position(position_values)
   # end
 
