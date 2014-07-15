@@ -1,7 +1,7 @@
 class TicTacToeBoard
   attr_accessor :grid
 
-  def initialize(board = Array.new(9," ") )   #TODO fix method names
+  def initialize( board = Array.new(9," ") )   #TODO fix method names
     @grid = board
     @winner_value = false
   end

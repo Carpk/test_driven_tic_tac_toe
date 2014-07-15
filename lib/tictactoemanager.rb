@@ -53,7 +53,7 @@ class TicTacToeManager
   def valid_player_move
     player = @game.current_player[:player].game_piece
     new_position = @view.prompt_player_move(player).to_i
-    until InputValidator.valid_move?( @game.available_spaces, new_position) # pass in @game.available_spaces
+    until InputValidator.valid_move?( @game.available_spaces, new_position)
       @view.invalid_input_error
       new_position = @view.prompt_player_move(player).to_i
     end

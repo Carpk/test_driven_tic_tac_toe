@@ -6,14 +6,14 @@ class ComputerAi
   end
 
   def assert_values(board)
-    position_values = []                                  # remove use of nil when assigning values
+    position_values = {}
     board.indexes_of_available_spaces.each do |empty_position|
       possible_board = Marshal.load( Marshal.dump(board) )
       possible_board.assign_token_to(@game_piece, empty_position)
       position_values[empty_position] = evaluate_board(possible_board, @enemy_piece, @game_piece)
     end
     # puts "values: #{position_values}"
-    random_position(position_values)
+    hash_selector(position_values)
   end
 
   def evaluate_board(board, current_player, passing_player, depth=1)
@@ -32,14 +32,13 @@ class ComputerAi
     end
   end
 
-  def random_position(position_values)
-    optimal_indexes = []
-    max_value = position_values.compact.max
-    position_values.each_with_index do |position_value, board_position|
-      optimal_indexes << board_position if position_value == max_value
+  def hash_selector(position_values)
+    best_positions = []
+    max_value = position_values.each_value.max
+    position_values.each_pair do |index, value|
+      best_positions << index if value == max_value
     end
-    # puts "optimal indexes: #{optimal_indexes}"                      # REMOVE AFTER TESTING
-    optimal_indexes.sample
+    best_positions.sample
   end
 
   def gameover?(board)
@@ -47,7 +46,6 @@ class ComputerAi
   end
 
   def create_value(board)
-
     returning_value =  0
     returning_value =  1.0 if GameValues.winner_of(board) == @game_piece
     returning_value = -1.0 if GameValues.winner_of(board) == @enemy_piece
@@ -57,36 +55,3 @@ class ComputerAi
 
 end
 
-
-  # def assert_values(board) # board is a Board object
-  #   position_values = []
-  #   board.each_with_index do |empty_position, empty_index|
-  #     next if empty_position != " "
-  #     possible_board = board.dup
-  #     possible_board[empty_index] = @game_piece
-  #     position_values[empty_index] = evaluate_board(possible_board, @enemy_piece, @game_piece)
-  #   end
-
-    # puts                                          # REMOVE AFTER TESTING
-    # puts @game_piece                              # REMOVE AFTER TESTING
-    # puts "board: #{board.grid}"                   # REMOVE AFTER TESTING
-    # puts "values: #{position_values.map {|e| e.to_s[0,5].to_f}}" # REMOVE AFTER TESTING
-
-  #   random_position(position_values)
-  # end
-
-  # def evaluate_board(board, current_player, passing_player, depth=1)
-  #   return create_value(board) / depth if gameover?(board) || depth > 6  # tests pass with 6
-  #   board_values = []
-  #   board.each_with_index do |empty_position, empty_index|
-  #     next if empty_position != " "
-  #     played_board = board.dup
-  #     played_board[empty_index] = current_player
-  #     board_values << evaluate_board(played_board, passing_player, current_player, depth +1)
-  #   end
-  #   if current_player == @game_piece
-  #     board_values.compact.max
-  #   else
-  #     board_values.compact.min
-  #   end
-  # end

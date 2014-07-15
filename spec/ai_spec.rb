@@ -48,13 +48,6 @@ describe ComputerAi do
     computer.assert_values(board).should eq(4)
   end
 
-  # it "should take midgridosition to counter middle perimeter move" do
-  #   board = [" ", " ", " ",
-#            " ", " ", "o",
- #            " ", " "board = TicTacToeBoard.new(grid)
-  #   computer.assert_values(board).should eq(4) # 2,3,4,8
-  # end
-
   it "should take win when available" do
     grid = ["o", " ", "x",
             " ", " ", "o",
@@ -68,7 +61,25 @@ describe ComputerAi do
             " ", " ", " ",
             " ", " ", " "]
     board = TicTacToeBoard.new(grid)
-    computer.assert_values(board).should eq(0)
+    [0,2,6,8].include?(computer.assert_values(board)).should eq(true)
+  end
+
+  it "should take mid position to counter middle perimeter move" do
+    grid = [" ", " ", " ",
+            " ", " ", "o",
+            " ", " ", " "]
+    board = TicTacToeBoard.new(grid)
+    [2,3,4,8].include?(computer.assert_values(board)).should eq(true)
+  end
+
+  it "should choose the hash with the highest value" do
+    hash = { 3 => -0.3, 6 => 0.1, 7 => -0.3}
+    computer.hash_selector(hash).should eq(6)
+  end
+
+  it "should choose the hash with the highest value" do
+    hash = { 3 => -0.3, 6 => 0.1, 7 => 0.1}
+    [6,7].include?(computer.hash_selector(hash)).should eq(true)
   end
 
   it "should return true if game is over with full board" do
