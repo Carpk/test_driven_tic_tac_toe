@@ -1,7 +1,7 @@
 class TicTacToeBoard
-  attr_accessor :grid, :winner_value
+  attr_accessor :grid
 
-  def initialize(board = Array.new(9," ") )        #fix method names
+  def initialize(board = Array.new(9," ") )   #TODO fix method names
     @grid = board
     @winner_value = false
   end
@@ -29,57 +29,6 @@ class TicTacToeBoard
     end
     available_indexes
   end
-
-  def matching_rows?
-    match_value = false
-    @grid.each_slice(board_side_length) do |win_attempt|
-      match_value = true if group_match?(win_attempt) == true
-    end
-    match_value
-  end
-
-  def matching_columns?
-    match_value = false
-    board_divisor = board_side_length
-    board_divisor.times do |index|
-      win_attempt = [@grid[index], @grid[index + board_divisor], @grid[index + board_divisor * 2]]
-      match_value = true if group_match?(win_attempt) == true
-    end
-    match_value
-  end
-
-  def matching_forwardslash?
-    match_value = false
-    index_offset = 0
-    forwardslash = []
-    @grid.each_slice(board_side_length) do |win_attempt|
-      forwardslash << win_attempt[-1 - index_offset]
-      index_offset += 1
-    end
-    match_value = true if group_match?(forwardslash) == true
-    match_value
-  end
-
-  def matching_backslash?
-    match_value = false
-    index_offset = 0
-    backslash = []
-    @grid.each_slice(board_side_length) do |win_attempt|
-      backslash << win_attempt[0 + index_offset]
-      index_offset += 1
-    end
-    match_value = true if group_match?(backslash) == true
-    match_value
-  end
-
-  def group_match?(group)
-    if group.rotate == group.delete_if {|e| " " == e}
-      @winner_value = group.first  # get rid of this
-      true
-    end
-  end
-
-
 
   def possible_wins
     all_combos = []

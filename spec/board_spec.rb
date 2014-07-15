@@ -15,16 +15,18 @@ describe TicTacToeBoard do
   end
 
   it "should return false for not having unassigned positions on board" do
-    board.grid = ["o", "x", "o",
-                  "x", "o", "x",
-                  "x", "o", "x"]
+    grid = ["o", "x", "o",
+            "x", "o", "x",
+            "x", "o", "x"]
+    board = TicTacToeBoard.new(grid)
     board.unassigned_positions?.should eq(false)
   end
 
   it "should return true for having a unassigned position on board" do
-    board.grid = ["o", "x", "o",
-                  "x", " ", "x",
-                  "x", "o", "x"]
+    grid = ["o", "x", "o",
+            "x", " ", "x",
+            "x", "o", "x"]
+    board = TicTacToeBoard.new(grid)
     board.unassigned_positions?.should eq(true)
   end
 
@@ -33,16 +35,18 @@ describe TicTacToeBoard do
   end
 
   it "should return false for empty position on board" do
-    board.grid = ["o", "x", "o",
-                  "x", " ", "x",
-                  "x", "o", "x"]
+    grid = ["o", "x", "o",
+            "x", " ", "x",
+            "x", "o", "x"]
+    board = TicTacToeBoard.new(grid)
     board.board_full?.should eq(false)
   end
 
   it "should return false for empty board" do
-    board.grid = ["o", "x", "o",
-                  "x", "o", "x",
-                  "x", "o", "x"]
+    grid = ["o", "x", "o",
+            "x", "o", "x",
+            "x", "o", "x"]
+    board = TicTacToeBoard.new(grid)
     board.board_full?.should eq(true)
   end
 
@@ -63,152 +67,44 @@ describe TicTacToeBoard do
   end
 
   it "should return the square root for board of 12" do
-    board.grid = ["o", "x", "o", " ",
-                  "x", "o", "x", " ",
-                  "x", "o", "x", " ",
-                  " ", " ", " ", " "]
+    grid = ["o", "x", "o", " ",
+            "x", "o", "x", " ",
+            "x", "o", "x", " ",
+            " ", " ", " ", " "]
+    board = TicTacToeBoard.new(grid)
     board.board_side_length.should eq(4)
   end
 
   it "should return the index positions of availible board positions" do
-    board.grid = ['f','f','f',
-                  "g"," "," ",
-                  " ","g"," "]
+    grid = ['f','f','f',
+            "g"," "," ",
+            " ","g"," "]
+    board = TicTacToeBoard.new(grid)
     board.indexes_of_available_spaces.should eq([4,5,6,8])
   end
 
   it "should return index positions of availible board positions" do
-    board.grid = ["f"," ","f",
-                  "g"," ","f",
-                  " ","g","f"]
+    grid = ["f"," ","f",
+            "g"," ","f",
+            " ","g","f"]
+    board = TicTacToeBoard.new(grid)
     board.indexes_of_available_spaces.should eq([1,4,6])
   end
 
   it "should return empty array with full board" do
-    board.grid = ["f","g","f",
-                  "g","g","f",
-                  "f","g","f"]
+    grid = ["f","g","f",
+            "g","g","f",
+            "f","g","f"]
+    board = TicTacToeBoard.new(grid)
     board.indexes_of_available_spaces.should eq([])
   end
 
   it "should return all positions with empty board" do
-    board.grid = [" "," "," ",
-                  " "," "," ",
-                  " "," "," "]
+    grid = [" "," "," ",
+            " "," "," ",
+            " "," "," "]
+    board = TicTacToeBoard.new(grid)
     board.indexes_of_available_spaces.should eq([0,1,2,3,4,5,6,7,8])
-  end
-
-  it "should return fasle if row set has not won" do
-    board.matching_rows?.should eq(false)
-  end
-
-  it "should know if row has won with top set" do
-    board.grid = ['f','f','f',
-                  " "," "," ",
-                  " "," "," "]
-    board.matching_rows?.should eq(true)
-  end
-
-  it "should know if row has won with middle set" do
-    board.grid = [" "," "," ",
-                  "e","e","e",
-                  " "," "," "]
-    board.matching_rows?.should eq(true)
-  end
-
-  it "should know if row has won with bottom set" do
-    board.grid = [" "," "," ",
-                  " "," "," ",
-                  "g","g","g"]
-    board.matching_rows?.should eq(true)
-  end
-
-  it "should return false column if set has not won" do
-    board.matching_columns?.should eq(false)
-  end
-
-  it "should know if column has won with first set" do
-    board.grid = ["r"," "," ",
-                  "r"," "," ",
-                  "r"," "," "]
-    board.matching_columns?.should eq(true)
-  end
-
-  it "should know if column has won with middle set" do
-    board.grid = [" ","p"," ",
-                  " ","p"," ",
-                  " ","p"," "]
-    board.matching_columns?.should eq(true)
-  end
-
-  it "should know if column has won with last set" do
-    board.grid = [" "," ","t",
-                  " "," ","t",
-                  " "," ","t"]
-    board.matching_columns?.should eq(true)
-  end
-
-  it "should return false if forwardslash diagonal set has not won" do
-    board.matching_forwardslash?.should eq(false)
-  end
-
-  it "should know if forwardslash diagonal set has won" do
-    board.grid = [" "," ","o",
-                  " ","o"," ",
-                  "o"," "," "]
-    board.matching_forwardslash?.should eq(true)
-  end
-
-  it "should return false if diagonal has not won" do
-    board.matching_backslash?.should eq(false)
-  end
-
-  it "should know if diagonal has won" do
-    board.grid = ["x"," "," ",
-                  " ","x"," ",
-                  " "," ","x"]
-    board.matching_backslash?.should eq(true)
-  end
-
-  it "should know if game is over" do
-    board.grid = ["o","o","o"," "," "," "," "," "," "]
-    board.matching_rows?
-    board.winner_value.should eq("o")
-  end
-
-  it "should check if given group is matching" do
-    group = ["o","o","o"]
-    board.group_match?(group).should eq(true)
-  end
-
-  it "should return false if given group is not matching" do
-    group = ["x","o","o"]
-    board.group_match?(group).should eq(nil)
-  end
-
-  it "should return false if given group is not matching" do
-    group = ["o","x","o"]
-    board.group_match?(group).should eq(nil)
-  end
-
-  it "should return false if given group is not matching" do
-    group = ["o","o","x"]
-    board.group_match?(group).should eq(nil)
-  end
-
-  it "should return false if given group is not matching" do
-    group = ["o","o"," "]
-    board.group_match?(group).should eq(nil)
-  end
-
-  it "should return false if given group is not matching" do
-    group = ["o"," ","o"]
-    board.group_match?(group).should eq(nil)
-  end
-
-  it "should return false if given group is not matching" do
-    group = [" ", " ", " "]
-    board.group_match?(group).should eq(nil)
   end
 
   it "should return nested arry of all possible wins" do

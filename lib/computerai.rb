@@ -6,13 +6,13 @@ class ComputerAi
   end
 
   def assert_values(board)
-    position_values = [] # remove use of nil when assigning values
+    position_values = []                                  # remove use of nil when assigning values
     board.indexes_of_available_spaces.each do |empty_position|
       possible_board = Marshal.load( Marshal.dump(board) )
       possible_board.assign_token_to(@game_piece, empty_position)
       position_values[empty_position] = evaluate_board(possible_board, @enemy_piece, @game_piece)
     end
-
+    # puts "values: #{position_values}"
     random_position(position_values)
   end
 

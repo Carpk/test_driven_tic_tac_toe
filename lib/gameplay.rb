@@ -21,6 +21,10 @@ class GamePlay
     GameValues.board_has_winner?(@board)
   end
 
+  def available_spaces
+    @board.indexes_of_available_spaces
+  end
+
   def set_board_values(new_board)
     @board.grid = new_board
   end
