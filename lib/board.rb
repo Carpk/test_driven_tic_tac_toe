@@ -1,7 +1,7 @@
 class TicTacToeBoard
-  attr_accessor :grid
+  attr_reader :grid
 
-  def initialize( board = Array.new(9," ") )   #TODO fix method names
+  def initialize( board )
     @grid = board
     @winner_value = false
   end

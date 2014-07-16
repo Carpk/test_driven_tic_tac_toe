@@ -17,37 +17,37 @@ describe GamePlay do
     game.gameover?.should eq(false)
   end
 
-  it "should know if game is over" do
-    board = [" ", "o", " ",
-             " ", "o", " ",
-             " ", "o", " "]
-    game.set_board_values(board)
-    game.gameover?.should eq(true)
-  end
+  # it "should know if game is over" do
+  #   board = [" ", "o", " ",
+  #            " ", "o", " ",
+  #            " ", "o", " "]
+  #   game.set_board_values(board)
+  #   game.gameover?.should eq(true)
+  # end
 
-  it "should know if game is over" do
-    board = ["x", "o", "x",
-             "o", "x", "o",
-             "o", "x", "o"]
-    game.set_board_values(board)
-    game.gameover?.should eq(true)
-  end
+  # it "should know if game is over" do
+  #   board = ["x", "o", "x",
+  #            "o", "x", "o",
+  #            "o", "x", "o"]
+  #   game.set_board_values(board)
+  #   game.gameover?.should eq(true)
+  # end
 
-  it "should know if game is not over" do
-    board = [" ", "o", "x",
-             "o", "x", "o",
-             "o", "x", "o"]
-    game.set_board_values(board)
-    game.gameover?.should eq(false)
-  end
+  # it "should know if game is not over" do
+  #   board = [" ", "o", "x",
+  #            "o", "x", "o",
+  #            "o", "x", "o"]
+  #   game.set_board_values(board)
+  #   game.gameover?.should eq(false)
+  # end
 
-  it "should know if game has a no winner" do
-    board = [" ", " ", "x",
-             " ", "o", " ",
-             " ", " ", "o"]
-    game.set_board_values(board)
-    game.game_winner?.should eq(false)
-  end
+  # it "should know if game has a no winner" do
+  #   board = [" ", " ", "x",
+  #            " ", "o", " ",
+  #            " ", " ", "o"]
+  #   game.set_board_values(board)
+  #   game.game_winner?.should eq(false)
+  # end
 
   # it "should know if game has a forwardslash winner" do
   #   board = ["o", " ", "x",
@@ -73,13 +73,13 @@ describe GamePlay do
     game.create_players(hash).class.should eq(Hash)
   end
 
-  it "should correctly set board values" do
-    board = [" ", " ", " ",
-             " ", "o", " ",
-             " ", " ", " "]
-    game.set_board_values(board)
-    game.display_board[4].should eq("o")
-  end
+  # it "should correctly set board values" do
+  #   board = [" ", " ", " ",
+  #            " ", "o", " ",
+  #            " ", " ", " "]
+  #   game.set_board_values(board)
+  #   game.display_board[4].should eq("o")
+  # end
 
   it "should move player to correct position" do
     hash = {player1: {symbol: "x", ai: "n"}, player2: {symbol: "o", ai: "n"}}
@@ -88,49 +88,10 @@ describe GamePlay do
     game.display_board[5].should eq("x")
   end
 
-  it "should return who won the game" do
-    board = ["x", "x", "x",
-             " ", "o", " ",
-             " ", " ", " "]
-    game.who_won?(board).should eq("x")
-  end
-
-  it "should return who won the game" do
-    board = ["x", "o", "x",
-             " ", "o", " ",
-             " ", "o", " "]
-    game.who_won?(board).should eq("o")
-  end
-
-  it "should know the game is a tie" do
-    board = ["o", "x", "o",
-             "x", "o", "x",
-             "x", "o", "x"]
-    game.tie_game?(board).should eq(true)
-  end
-
-  it "should know there is no tie with winner" do
-    board = ["o", "x", "o",
-             "x", "x", "x",
-             "o", "o", "x"]
-    game.tie_game?(board).should eq(false)
-  end
-
-  it "should know there is no tie with incomplete game" do
-    board = ["o", "x", "o",
-             "x", " ", "x",
-             "o", "o", "x"]
-    game.tie_game?(board).should eq(false)
-  end
-
-  it "should get a response from the ai" do
-    board = ["o", "x", "o",
-             "x", " ", "x",
-             "o", "o", "x"]
-    hash = {player1: {symbol: "x", ai: "y"}, player2: {symbol: "o", ai: "n"}}
-    game.create_players(hash)
-    game.set_board_values(board)
-    game.computer_turn.should eq(4)
-  end
+  # it "should get a response from the ai" do
+  #   hash = {player1: {symbol: "x", ai: "y"}, player2: {symbol: "o", ai: "n"}}
+  #   game.create_players(hash)
+  #   game.computer_turn.class.should eq(Fixnum)
+  # end
 
 end

@@ -10,6 +10,16 @@ describe TicTacToeBoard do
     board.grid.length.should eq(9)
   end
 
+  it "should return the correct length when initialized with large board" do
+    board = TicTacToeBoard.new(Array.new(20))
+    board.grid.length.should eq(20)
+  end
+
+  it "should return the correct length when initialized with small board" do
+    board = TicTacToeBoard.new(Array.new(4))
+    board.grid.length.should eq(4)
+  end
+
   it "should return true for having multiple unassigned positions on board" do
     board.unassigned_positions?.should eq(true)
   end
@@ -63,6 +73,7 @@ describe TicTacToeBoard do
   end
 
   it "should return the square root for board of 9" do
+
     board.board_side_length.should eq(3)
   end
 

@@ -2,7 +2,7 @@ class ComputerAi
 
   def initialize(params)
     @game_piece = params[:symbol]
-    @enemy_piece = params[:opponent]        # make into a single hash object?
+    @enemy_piece = params[:opponent]
   end
 
   def assert_values(board)
@@ -12,12 +12,12 @@ class ComputerAi
       possible_board.assign_token_to(@game_piece, empty_position)
       position_values[empty_position] = evaluate_board(possible_board, @enemy_piece, @game_piece)
     end
-    # puts "values: #{position_values}"
-    hash_selector(position_values)
+
+    select_random_index(position_values)
   end
 
   def evaluate_board(board, current_player, passing_player, depth=1)
-    return create_value(board) / depth if gameover?(board) || depth > 6  # tests pass with 6
+    return create_value(board) / depth if gameover?(board) || depth > 6
     board_values = []
     board.indexes_of_available_spaces.each do |empty_position|
       played_board = Marshal.load( Marshal.dump(board) )
@@ -32,7 +32,7 @@ class ComputerAi
     end
   end
 
-  def hash_selector(position_values)
+  def select_random_index(position_values)
     best_positions = []
     max_value = position_values.each_value.max
     position_values.each_pair do |index, value|

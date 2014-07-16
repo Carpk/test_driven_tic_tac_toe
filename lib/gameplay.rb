@@ -1,8 +1,8 @@
 class GamePlay
   attr_reader :current_player
 
-  def initialize
-    @board = TicTacToeBoard.new
+  def initialize(board = Array.new(9," "))
+    @board = TicTacToeBoard.new(board)
   end
 
   def create_players(params)
@@ -25,9 +25,9 @@ class GamePlay
     @board.indexes_of_available_spaces
   end
 
-  def set_board_values(new_board)
-    @board.grid = new_board
-  end
+  # def set_board_values(new_board)
+  #   @board.grid = new_board
+  # end
 
   def player_move_to(position)
     token = @current_player[:player].game_piece
@@ -44,13 +44,4 @@ class GamePlay
     @board.grid
   end
 
-  def who_won?(board_array)
-    board = TicTacToeBoard.new(board_array)
-    GameValues.winner_of(board)
-  end
-
-  def tie_game?(board_array)
-    board = TicTacToeBoard.new(board_array)
-    GameValues.tie_game?(board)
-  end
 end

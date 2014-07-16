@@ -5,8 +5,6 @@ require 'rspec'
 describe ComputerAi do
 
   let(:computer)  {ComputerAi.new({symbol: "x", opponent: "o"})}
-  let(:game)      {GamePlay.new}
-
 
   it "should take win instead of block" do
     grid = ["x", "x", " ",
@@ -56,14 +54,6 @@ describe ComputerAi do
     computer.assert_values(board).should eq(4)
   end
 
-  xit "should start game at known optimal positions" do     # PENDING
-    grid = [" ", " ", " ",
-            " ", " ", " ",
-            " ", " ", " "]
-    board = TicTacToeBoard.new(grid)
-    [0,2,6,8].include?(computer.assert_values(board)).should eq(true)
-  end
-
   it "should take mid position to counter middle perimeter move" do
     grid = [" ", " ", " ",
             " ", " ", "o",
@@ -72,14 +62,40 @@ describe ComputerAi do
     [2,3,4,8].include?(computer.assert_values(board)).should eq(true)
   end
 
+  it "should evaluate the board and return an integer" do
+    grid = [" ", " ", " ",
+            " ", " ", "o",
+            " ", " ", " "]
+    board = TicTacToeBoard.new(grid)
+    computer.evaluate_board(board, "x", "o").should eq(0)
+  end
+
+  it "should evaluate the board and return an float" do
+    grid = [" ", " ", " ",
+            " ", "x", "o",
+            " ", " ", " "]
+    board = TicTacToeBoard.new(grid)
+    computer.evaluate_board(board, "x", "o").should eq(0.16666666666666666)
+  end
+
   it "should choose the hash with the highest value" do
     hash = { 3 => -0.3, 6 => 0.1, 7 => -0.3}
-    computer.hash_selector(hash).should eq(6)
+    computer.select_random_index(hash).should eq(6)
+  end
+
+  it "should choose the hash with the highest value" do
+    hash = { 3 => -0.3, 6 => 0.1, 7 => -0.3, 8 => 1.0}
+    computer.select_random_index(hash).should eq(8)
+  end
+
+  it "should choose the hash with the highest value" do
+    hash = { 3 => -0.3, 4 => -0.1, 7 => -0.3}
+    computer.select_random_index(hash).should eq(4)
   end
 
   it "should choose the hash with the highest value" do
     hash = { 3 => -0.3, 6 => 0.1, 7 => 0.1}
-    [6,7].include?(computer.hash_selector(hash)).should eq(true)
+    [6,7].include?(computer.select_random_index(hash)).should eq(true)
   end
 
   it "should return true if game is over with full board" do
@@ -122,7 +138,7 @@ describe ComputerAi do
     computer.create_value(board).should eq(-1)
   end
 
-  it "should create a positive value based on board win" do
+  it "should create a positive value based on incomplete board win" do
     grid = ["x", " ", " ",
             "o", "x", "o",
             " ", " ", "x"]
