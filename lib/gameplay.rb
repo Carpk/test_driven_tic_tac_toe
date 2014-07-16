@@ -1,8 +1,8 @@
 class GamePlay
   attr_reader :current_player
 
-  def initialize(board = Array.new(9," "))
-    @board = TicTacToeBoard.new(board)
+  def initialize
+    @board = TicTacToeBoard.new
   end
 
   def create_players(params)
@@ -14,11 +14,11 @@ class GamePlay
   end
 
   def gameover?
-    GameValues.gameover?(@board)
+    BoardValues.gameover?(@board)
   end
 
   def game_winner?
-    GameValues.board_has_winner?(@board)
+    BoardValues.board_has_winner?(@board)
   end
 
   def available_spaces

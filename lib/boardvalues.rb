@@ -1,4 +1,4 @@
-class GameValues
+class BoardValues
 
   def self.gameover?(board)
     board.board_full? ||
