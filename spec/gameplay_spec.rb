@@ -4,20 +4,20 @@ require 'rspec'
 
 describe GamePlay do
 
-  let(:game)      {GamePlay.new}
+  let(:game)      {GamePlay.new(TicTacToeBoard.new(Array.new(9," ")))}
 
   it "should create new players from hash" do
     hash = {player1: {symbol: "x", ai: "n"}, player2: {symbol: "o", ai: "n"}}
     game.create_players(hash).class.should eq(Hash)
   end
 
-  it "should know if game is over" do
+  it "should know game is not over at start of game" do
     hash = {player1: {symbol: "x", ai: "n"}, player2: {symbol: "o", ai: "n"}}
     game.create_players(hash)
     game.gameover?.should eq(false)
   end
 
-  # it "should know if game is over" do
+  # it "should know if game is over with player win" do
   #   board = [" ", "o", " ",
   #            " ", "o", " ",
   #            " ", "o", " "]
@@ -25,7 +25,7 @@ describe GamePlay do
   #   game.gameover?.should eq(true)
   # end
 
-  # it "should know if game is over" do
+  # it "should know if game is over with a full board" do
   #   board = ["x", "o", "x",
   #            "o", "x", "o",
   #            "o", "x", "o"]
@@ -33,7 +33,7 @@ describe GamePlay do
   #   game.gameover?.should eq(true)
   # end
 
-  # it "should know if game is not over" do
+  # it "should know if game is not over with 1 empty cell" do
   #   board = [" ", "o", "x",
   #            "o", "x", "o",
   #            "o", "x", "o"]
@@ -49,7 +49,7 @@ describe GamePlay do
   #   game.game_winner?.should eq(false)
   # end
 
-  # it "should know if game has a forwardslash winner" do
+  # it "should know when game has a forwardslash winner" do
   #   board = ["o", " ", "x",
   #            " ", "o", " ",
   #            " ", " ", "o"]
@@ -73,7 +73,7 @@ describe GamePlay do
     game.create_players(hash).class.should eq(Hash)
   end
 
-  # it "should correctly set board values" do
+  # it "should correctly set player position" do
   #   board = [" ", " ", " ",
   #            " ", "o", " ",
   #            " ", " ", " "]

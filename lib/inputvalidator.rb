@@ -1,8 +1,8 @@
 class InputValidator
 
   def self.valid_hash?(players_hash)
-    valid = true
-    valid = false if players_hash[:player1][:symbol] == players_hash[:player2][:symbol]
+
+    valid = players_hash[:player1][:symbol] != players_hash[:player2][:symbol]
 
     players_hash.each_value do |new_player|
       valid = false if new_player[:symbol].length != 1

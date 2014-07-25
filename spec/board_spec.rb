@@ -4,7 +4,7 @@ require 'rspec'
 
 describe TicTacToeBoard do
 
-  let(:board)  {TicTacToeBoard.new}
+  let(:board)  {TicTacToeBoard.new(Array.new(9," "))}
 
   it "should return the correct length of board" do
     board.grid.length.should eq(9)

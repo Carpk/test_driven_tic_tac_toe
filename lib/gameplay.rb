@@ -1,9 +1,36 @@
 class GamePlay
   attr_reader :current_player
 
-  def initialize
-    @board = TicTacToeBoard.new
+  def initialize(board)
+    @board = board
   end
+
+  # def self.gameover?(board)
+  #   board.board_full? ||
+  #   self.board_has_winner?(board)
+  # end
+
+  # def self.tie_game?(board)
+  #   board.board_full? && self.board_has_winner?(board) == false
+  # end
+
+  # def self.board_has_winner?(board)
+  #   value = false
+  #   board.possible_wins.each do |section|
+  #     value = true if self.group_match?(section)
+  #   end
+  #   value
+  # end
+
+  # def self.winner_of(board)
+  #   board.possible_wins.each do |section|
+  #     return section.first if self.group_match?(section)
+  #   end
+  # end
+
+  # def self.group_match?(section)
+  #   section.rotate == section.delete_if {|e| " " == e}
+  # end
 
   def create_players(params)
     player1 = Player.new(params[:player1])
@@ -17,17 +44,13 @@ class GamePlay
     BoardValues.gameover?(@board)
   end
 
-  def game_winner?
+  def game_winner? #(board)
     BoardValues.board_has_winner?(@board)
   end
 
   def available_spaces
-    @board.indexes_of_available_spaces
+    @board.indexes_of_availablespaces
   end
-
-  # def set_board_values(new_board)
-  #   @board.grid = new_board
-  # end
 
   def player_move_to(position)
     token = @current_player[:player].game_piece

@@ -2,7 +2,7 @@ class TicTacToeManager
 
   def initialize
     @view = DisplayUtility.new
-    @game = GamePlay.new
+    @game = GamePlay.new(Array.new(9," "))
   end
 
   def start
