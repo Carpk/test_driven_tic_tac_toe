@@ -40,14 +40,6 @@ class GamePlay
     @current_player = @players[:p1]
   end
 
-  # def gameover?
-  #   GamePlay.gameover?(@board)
-  # end
-
-  # def game_winner?
-  #   GamePlay.board_has_winner?(@board)
-  # end
-
   def available_spaces
     @board.indexes_of_available_spaces
   end
@@ -66,5 +58,4 @@ class GamePlay
   def display_board
     @board.grid
   end
-
 end
