@@ -14,7 +14,7 @@ class GamePlay
     @board.board_full? && board_has_winner? == false
   end
 
-  def board_has_winner? # game_winner?
+  def board_has_winner?
     value = false
     @board.possible_wins.each do |section|
       value = true if self.group_match?(section)

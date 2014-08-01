@@ -54,6 +54,22 @@ describe GamePlay do
     game.board_has_winner?.should eq(true)
   end
 
+  it "should return true if there is a matching array" do
+    grid = ["o", "o", "o",
+            "o", "x", "o",
+            "x", "o", "x"]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.board_has_winner?.should eq(true)
+  end
+
+    it "should return true if there is a matching array" do
+    grid = ["x", "x", " ",
+            "o", "o", "o",
+            "x", "o", "x"]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.board_has_winner?.should eq(true)
+  end
+
   it "should return false if only matches are empty cells" do
     grid = ["x", "o", " ",
             "o", "x", " ",
@@ -62,9 +78,81 @@ describe GamePlay do
     game.board_has_winner?.should eq(false)
   end
 
+  it "should return false if only matches are empty cells" do
+    grid = [" ", " ", " ",
+            " ", " ", " ",
+            " ", " ", " "]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.board_has_winner?.should eq(false)
+  end
+
+  it "should return false if only matches are empty cells" do
+    grid = ["x", "o", " ",
+            "x", "x", " ",
+            "x", "o", " "]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.board_has_winner?.should eq(true)
+  end
+
+  it "should return false if only matches are empty cells" do
+    grid = ["x", "o", " ",
+            "o", "o", " ",
+            "x", "o", " "]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.board_has_winner?.should eq(true)
+  end
+
+  it "should return false if only matches are empty cells" do
+    grid = ["x", "o", "o",
+            "o", "x", "o",
+            "x", "o", "o"]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.board_has_winner?.should eq(true)
+  end
+
+  it "should return false if only matches are empty cells" do
+    grid = ["x", "o", " ",
+            "o", "x", " ",
+            "x", "o", "x"]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.board_has_winner?.should eq(true)
+  end
+
+  it "should return false if only matches are empty cells" do
+    grid = ["o", "o", "x",
+            "o", "x", " ",
+            "x", "x", "o"]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.board_has_winner?.should eq(true)
+  end
+
+  it "should return correct winner of board" do
+    grid = ["x", "o", " ",
+            "x", "x", " ",
+            "x", "o", " "]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.winner_of.should eq("x")
+  end
+
+  it "should return correct winner of board" do
+    grid = ["x", "o", " ",
+            "o", "o", " ",
+            "x", "o", " "]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.winner_of.should eq("o")
+  end
+
+  it "should return correct winner of board" do
+    grid = ["x", "o", "o",
+            "o", "x", "o",
+            "x", "o", "o"]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.winner_of.should eq("o")
+  end
+
   it "should return winner of a winning board" do
     grid = ["x", "o", " ",
-            "o", "x", "o",
+            "o", " ", "o",
             "x", "x", "x"]
     game = GamePlay.new(TicTacToeBoard.new(grid))
     game.winner_of.should eq("x")
@@ -76,6 +164,46 @@ describe GamePlay do
             "x", " ", "x"]
     game = GamePlay.new(TicTacToeBoard.new(grid))
     game.winner_of.should eq("o")
+  end
+
+  it "should return true if there is a matching array" do
+    grid = ["o", "o", "o",
+            "o", "x", "o",
+            "x", "o", "x"]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.winner_of.should eq("o")
+  end
+
+    it "should return true if there is a matching array" do
+    grid = ["x", "x", " ",
+            "o", "o", "o",
+            "x", "o", "x"]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.winner_of.should eq("o")
+  end
+
+  it "should return true if there is a matching array" do
+    grid = ["x", "o", " ",
+            "o", "x", "o",
+            "x", "x", "x"]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.winner_of.should eq("x")
+  end
+
+  it "should return false if only matches are empty cells" do
+    grid = ["x", "o", " ",
+            "o", "x", " ",
+            "x", "o", "x"]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.winner_of.should eq("x")
+  end
+
+  it "should return false if only matches are empty cells" do
+    grid = ["o", "o", "x",
+            "o", "x", " ",
+            "x", "x", "o"]
+    game = GamePlay.new(TicTacToeBoard.new(grid))
+    game.winner_of.should eq("x")
   end
 
   it "should return true if board is tied" do
@@ -222,30 +350,6 @@ describe GamePlay do
     game.create_players(hash)
     game.computer_turn.class.should eq(Fixnum)
   end
-
-  # it "should return false if there is no winner" do
-  #   grid = ["x", "o", " ",
-  #           "o", "x", "o",
-  #           "o", "x", " "]
-  #   board = TicTacToeBoard.new(grid)
-  #   BoardValues.board_has_winner?(board).should eq(false)
-  # end
-
-  # it "should return true if there is a matching array" do
-  #   grid = ["x", "o", " ",
-  #           "o", "x", "o",
-  #           "x", "x", "x"]
-  #   board = TicTacToeBoard.new(grid)
-  #   BoardValues.board_has_winner?(board).should eq(true)
-  # end
-
-  # it "should return false if only matches are empty cells" do
-  #   grid = ["x", "o", " ",
-  #           "o", "x", " ",
-  #           "x", "x", " "]
-  #   board = TicTacToeBoard.new(grid)
-  #   BoardValues.board_has_winner?(board).should eq(false)
-  # end
 
   # it "should return winner of a winning board" do
   #   grid = ["x", "o", " ",
