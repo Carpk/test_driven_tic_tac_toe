@@ -5,32 +5,32 @@ class GamePlay
     @board = board
   end
 
-  # def self.gameover?(board)
-  #   board.board_full? ||
-  #   self.board_has_winner?(board)
-  # end
+  def gameover?
+    @board.board_full? ||
+    board_has_winner?
+  end
 
-  # def self.tie_game?(board)
-  #   board.board_full? && self.board_has_winner?(board) == false
-  # end
+  def tie_game?
+    @board.board_full? && board_has_winner? == false
+  end
 
-  # def self.board_has_winner?(board)
-  #   value = false
-  #   board.possible_wins.each do |section|
-  #     value = true if self.group_match?(section)
-  #   end
-  #   value
-  # end
+  def board_has_winner? # game_winner?
+    value = false
+    @board.possible_wins.each do |section|
+      value = true if self.group_match?(section)
+    end
+    value
+  end
 
-  # def self.winner_of(board)
-  #   board.possible_wins.each do |section|
-  #     return section.first if self.group_match?(section)
-  #   end
-  # end
+  def winner_of
+    @board.possible_wins.each do |section|
+      return section.first if group_match?(section)
+    end
+  end
 
-  # def self.group_match?(section)
-  #   section.rotate == section.delete_if {|e| " " == e}
-  # end
+  def group_match?(section)
+    section.rotate == section.delete_if {|e| " " == e}
+  end
 
   def create_players(params)
     player1 = Player.new(params[:player1])
@@ -40,16 +40,16 @@ class GamePlay
     @current_player = @players[:p1]
   end
 
-  def gameover?
-    BoardValues.gameover?(@board)
-  end
+  # def gameover?
+  #   GamePlay.gameover?(@board)
+  # end
 
-  def game_winner? #(board)
-    BoardValues.board_has_winner?(@board)
-  end
+  # def game_winner?
+  #   GamePlay.board_has_winner?(@board)
+  # end
 
   def available_spaces
-    @board.indexes_of_availablespaces
+    @board.indexes_of_available_spaces
   end
 
   def player_move_to(position)

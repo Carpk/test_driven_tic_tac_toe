@@ -1,8 +1,8 @@
-class TicTacToeManager
+class TicTacToe
 
   def initialize
     @view = DisplayUtility.new
-    @game = GamePlay.new(Array.new(9," "))
+    @game = GamePlay.new(TicTacToeBoard.new(Array.new(9," ")))
   end
 
   def start

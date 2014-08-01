@@ -2,9 +2,9 @@ require_relative "../lib/console"
 
 require 'rspec'
 
-describe TicTacToeManager do
+describe TicTacToe do
 
-  let(:manage)  {TicTacToeManager.new}
+  let(:manage)  {TicTacToe.new}
 
   # it "should prompt for multiple players" do
   #   STDOUT.should_receive(:puts).with("Please enter your game piece symbol for player1:")

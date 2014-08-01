@@ -42,14 +42,16 @@ class ComputerAi
   end
 
   def gameover?(board)
-    BoardValues.gameover?(board)
+    game = GamePlay.new(board)
+    game.gameover?
   end
 
   def create_value(board)
+    game = GamePlay.new(board)
     returning_value =  0
-    returning_value =  1.0 if BoardValues.winner_of(board) == @game_piece
-    returning_value = -1.0 if BoardValues.winner_of(board) == @enemy_piece
-    returning_value =  0.0 if BoardValues.tie_game?(board)
+    returning_value =  1.0 if game.winner_of == @game_piece
+    returning_value = -1.0 if game.winner_of == @enemy_piece
+    returning_value =  0.0 if game.tie_game?
     returning_value
   end
 
