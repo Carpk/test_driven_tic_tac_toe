@@ -337,7 +337,7 @@ describe GamePlay do
              " ", " ", "o"]
     game = GamePlay.new(TicTacToeBoard.new(board))
     hash = {player1: {symbol: "x", ai: "y"}, player2: {symbol: "o", ai: "n"}}
-    game.create_players(hash) # .class.should eq(Hash)
+    game.create_players(hash)
     game.current_player[:player].class.should eq(Player)
   end
 
